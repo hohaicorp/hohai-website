@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+// Prisma schema for HOHAI website backend
+// Run: npx prisma migrate dev --name init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  role      String   @default("USER")
+}
+
+model Testimonial {
+  id          Int      @id @default(autoincrement())
+  name        String
+  position    String
+  company     String
+  photo       String
+  rating      Int
+  testimonial String
+  projectType String
+  projectDuration String
+  projectImprovement String
+  projectFeatures String // comma-separated
+  createdAt   DateTime @default(now())
+}
+
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+model CallRequest {
+  id        Int      @id @default(autoincrement())
+  name      String
+  phone     String
+  enquiry   String
+  createdAt DateTime @default(now())
+}
