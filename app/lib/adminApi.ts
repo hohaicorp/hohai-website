@@ -5,6 +5,14 @@ interface ApiResponse<T> {
   error?: string
 }
 
+interface CallRequest {
+  id: number
+  name: string
+  phone: string
+  enquiry: string
+  createdAt: string
+}
+
 class AdminApi {
   private getToken(): string | null {
     if (typeof window !== 'undefined') {
@@ -114,8 +122,8 @@ class AdminApi {
   }
 
   // Scheduled Calls
-  async getCallRequests() {
-    return this.request('/scheduled-meets')
+  async getCallRequests(): Promise<ApiResponse<{ callRequests: CallRequest[] }>> {
+    return this.request<{ callRequests: CallRequest[] }>('/scheduled-meets')
   }
 }
 
