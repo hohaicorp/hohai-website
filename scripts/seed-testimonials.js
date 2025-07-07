@@ -79,4 +79,4 @@ async function seedTestimonials() {
   }
 }
 
-seedTestimonials() 
+seedTestimonials()
