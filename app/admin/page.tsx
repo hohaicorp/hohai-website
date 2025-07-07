@@ -120,8 +120,10 @@ export default function AdminDashboard() {
       }
       // Fetch call requests
       const callRes = await adminApi.getCallRequests()
-      if (callRes.data && callRes.data.callRequests) {
-        setCallRequests(callRes.data.callRequests)
+      // Type assertion to inform TypeScript about the expected shape
+      const callData = callRes.data as { callRequests: CallRequest[] } | undefined
+      if (callData && callData.callRequests) {
+        setCallRequests(callData.callRequests)
       }
     } catch (err) {
       setError('Failed to load dashboard data')
