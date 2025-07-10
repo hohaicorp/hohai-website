@@ -19,8 +19,10 @@
   import Link from 'next/link'
   import { api } from '../lib/api'
   import ResponsiveNav from "../components/ResponsiveNav";
+  import { useRouter } from 'next/navigation';
 
   export default function ContactPage() {
+    const router = useRouter();
     const [formData, setFormData] = useState({
       name: '',
       email: '',
@@ -175,6 +177,15 @@
     return (
       <div className="min-h-screen bg-white">
         <ResponsiveNav />
+        {/* Meet Our Team Button */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex justify-end">
+          <button
+            onClick={() => router.push('/meet-our-team')}
+            className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg hover:from-red-700 hover:to-red-800 transition-all duration-300 font-semibold shadow-lg text-base sm:text-lg"
+          >
+            Meet Our Team
+          </button>
+        </div>
         {/* Gamusa Side Strips - Left */}
         <div className="fixed left-0 top-0 w-6 sm:w-4 md:w-8 lg:w-12 h-full bg-red-600 z-40">
           <div className="w-full h-full bg-white" style={{
