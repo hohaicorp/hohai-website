@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 export default function ResponsiveNav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const drawerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,7 +18,6 @@ export default function ResponsiveNav() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Mobile detection for closing menu on resize
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) setIsMenuOpen(false);
@@ -26,7 +26,6 @@ export default function ResponsiveNav() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Close menu on escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isMenuOpen) {
@@ -37,9 +36,24 @@ export default function ResponsiveNav() {
     return () => window.removeEventListener("keydown", handleEscape);
   }, [isMenuOpen]);
 
+  // Close drawer when clicking outside
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    function handleClick(e: MouseEvent) {
+      if (
+        drawerRef.current &&
+        !drawerRef.current.contains(e.target as Node)
+      ) {
+        setIsMenuOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [isMenuOpen]);
+
   return (
     <nav
-      className={`fixed top-0 left-12 right-12 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-6 right-6 sm:left-4 sm:right-4 md:left-8 md:right-8 lg:left-12 lg:right-12 z-50 transition-all duration-300 ${
         isScrolled ? "bg-white shadow-lg" : "bg-transparent"
       }`}
     >
@@ -75,32 +89,54 @@ export default function ResponsiveNav() {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
-            <button
+            <motion.button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-700 hover:text-red-600"
+              className="relative p-2 text-gray-700 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 rounded-lg"
+              whileTap={{ scale: 0.95 }}
               aria-label="Toggle menu"
             >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+              <div className="w-6 h-6 relative">
+                <motion.span
+                  className="absolute top-1 left-0 w-6 h-0.5 bg-current transform transition-all duration-300"
+                  animate={isMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+                />
+                <motion.span
+                  className="absolute top-3 left-0 w-6 h-0.5 bg-current transform transition-all duration-300"
+                  animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+                />
+                <motion.span
+                  className="absolute top-5 left-0 w-6 h-0.5 bg-current transform transition-all duration-300"
+                  animate={isMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+                />
+              </div>
+            </motion.button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu - Side Drawer from Right */}
         <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{
-            opacity: isMenuOpen ? 1 : 0,
-            height: isMenuOpen ? "auto" : 0,
-          }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="md:hidden bg-white border-t border-gray-200 overflow-hidden"
+          initial={{ x: "100%" }}
+          animate={{ x: isMenuOpen ? "0%" : "100%" }}
+          exit={{ x: "100%" }}
+          transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
+          className="md:hidden fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-[60] overflow-hidden"
+          ref={drawerRef}
         >
-          <motion.div
-            className="px-2 pt-2 pb-3 space-y-1"
-            initial={{ y: -20 }}
-            animate={{ y: isMenuOpen ? 0 : -20 }}
-            transition={{ duration: 0.3, delay: isMenuOpen ? 0.1 : 0 }}
-          >
+          {/* Menu Header */}
+          <div className="flex justify-between items-center p-6 border-b border-gray-200 bg-gradient-to-r from-red-50 to-red-100">
+            <h2 className="text-xl font-bold text-red-600">HOHAI</h2>
+            <motion.button
+              onClick={() => setIsMenuOpen(false)}
+              className="p-2 text-gray-700 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 rounded-lg hover:bg-white transition-colors"
+              whileTap={{ scale: 0.95 }}
+              aria-label="Close menu"
+            >
+              <X className="w-6 h-6" />
+            </motion.button>
+          </div>
+
+          {/* Menu Content */}
+          <div className="p-6 space-y-4 overflow-y-auto h-full pb-24">
             {[
               { href: "#home", label: "Home" },
               { href: "#services", label: "Services" },
@@ -111,28 +147,45 @@ export default function ResponsiveNav() {
               <motion.a
                 key={item.href}
                 href={item.href}
-                className="block px-3 py-3 text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: isMenuOpen ? 1 : 0, x: isMenuOpen ? 0 : -20 }}
-                transition={{ duration: 0.3, delay: isMenuOpen ? 0.1 + index * 0.05 : 0 }}
+                className="block px-4 py-4 text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-300 font-medium text-lg border-l-4 border-transparent hover:border-red-600"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
                 onClick={() => setIsMenuOpen(false)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 {item.label}
               </motion.a>
             ))}
             <Link href="/contact">
               <motion.button
-                className="w-full mt-3 bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors font-semibold"
+                className="w-full mt-6 bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-4 rounded-lg hover:from-red-700 hover:to-red-800 transition-all duration-300 font-semibold shadow-lg text-lg"
                 initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: isMenuOpen ? 1 : 0, scale: isMenuOpen ? 1 : 0.9 }}
-                transition={{ duration: 0.3, delay: isMenuOpen ? 0.3 : 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 0.6 }}
                 onClick={() => setIsMenuOpen(false)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 Get Started
               </motion.button>
             </Link>
-          </motion.div>
+          </div>
         </motion.div>
+
+        {/* Overlay for closing drawer */}
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.4 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-black z-[59] md:hidden"
+            onClick={() => setIsMenuOpen(false)}
+            aria-label="Close menu overlay"
+          />
+        )}
       </div>
     </nav>
   );

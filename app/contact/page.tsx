@@ -176,67 +176,67 @@
       <div className="min-h-screen bg-white">
         <ResponsiveNav />
         {/* Gamusa Side Strips - Left */}
-        <div className="fixed left-0 top-0 w-12 sm:w-8 md:w-12 h-full bg-red-600 z-40">
+        <div className="fixed left-0 top-0 w-6 sm:w-4 md:w-8 lg:w-12 h-full bg-red-600 z-40">
           <div className="w-full h-full bg-white" style={{
             backgroundImage: `
               linear-gradient(0deg, #dc2626 0%, #dc2626 10%, white 10%, white 20%, #dc2626 20%, #dc2626 30%, white 30%, white 40%, #dc2626 40%, #dc2626 50%, white 50%, white 60%, #dc2626 60%, #dc2626 70%, white 70%, white 80%, #dc2626 80%, #dc2626 90%, white 90%, white 100%),
               linear-gradient(90deg, #dc2626 0%, #dc2626 8.33%, white 8.33%, white 16.66%, #dc2626 16.66%, #dc2626 25%, white 25%, white 33.33%, #dc2626 33.33%, #dc2626 41.66%, white 41.66%, white 50%, #dc2626 50%, #dc2626 58.33%, white 58.33%, white 66.66%, #dc2626 66.66%, #dc2626 75%, white 75%, white 83.33%, #dc2626 83.33%, #dc2626 91.66%, white 91.66%, white 100%)
             `,
-            backgroundSize: '8px 40px, 8px 8px',
+            backgroundSize: '6px 30px, 6px 6px',
           }}>
             {/* Traditional Gamusa circular motifs */}
             <div className="absolute inset-0" style={{
               backgroundImage: `
-                radial-gradient(circle at 6px 20px, #dc2626 1px, transparent 2px),
-                radial-gradient(circle at 6px 60px, #dc2626 1px, transparent 2px),
-                radial-gradient(circle at 6px 100px, #dc2626 1px, transparent 2px),
-                radial-gradient(circle at 6px 140px, #dc2626 1px, transparent 2px)
+                radial-gradient(circle at 3px 15px, #dc2626 0.5px, transparent 1px),
+                radial-gradient(circle at 3px 45px, #dc2626 0.5px, transparent 1px),
+                radial-gradient(circle at 3px 75px, #dc2626 0.5px, transparent 1px),
+                radial-gradient(circle at 3px 105px, #dc2626 0.5px, transparent 1px)
               `,
-              backgroundSize: '12px 80px'
+              backgroundSize: '6px 60px'
             }}></div>
             {/* Geometric diamond pattern */}
             <div className="absolute inset-0 opacity-70" style={{
               backgroundImage: `
-                conic-gradient(from 45deg at 6px 10px, #dc2626 0deg 90deg, transparent 90deg 180deg, #dc2626 180deg 270deg, transparent 270deg 360deg),
-                conic-gradient(from 45deg at 6px 30px, transparent 0deg 90deg, #dc2626 90deg 180deg, transparent 180deg 270deg, #dc2626 270deg 360deg)
+                conic-gradient(from 45deg at 3px 7px, #dc2626 0deg 90deg, transparent 90deg 180deg, #dc2626 180deg 270deg, transparent 270deg 360deg),
+                conic-gradient(from 45deg at 3px 22px, transparent 0deg 90deg, #dc2626 90deg 180deg, transparent 180deg 270deg, #dc2626 270deg 360deg)
               `,
-              backgroundSize: '12px 20px'
+              backgroundSize: '6px 15px'
             }}></div>
           </div>
         </div>
         
         {/* Gamusa Side Strips - Right */}
-        <div className="fixed right-0 top-0 w-12 sm:w-8 md:w-12 h-full bg-red-600 z-40">
+        <div className="fixed right-0 top-0 w-6 sm:w-4 md:w-8 lg:w-12 h-full bg-red-600 z-40">
           <div className="w-full h-full bg-white" style={{
             backgroundImage: `
               linear-gradient(0deg, #dc2626 0%, #dc2626 10%, white 10%, white 20%, #dc2626 20%, #dc2626 30%, white 30%, white 40%, #dc2626 40%, #dc2626 50%, white 50%, white 60%, #dc2626 60%, #dc2626 70%, white 70%, white 80%, #dc2626 80%, #dc2626 90%, white 90%, white 100%),
               linear-gradient(90deg, #dc2626 0%, #dc2626 8.33%, white 8.33%, white 16.66%, #dc2626 16.66%, #dc2626 25%, white 25%, white 33.33%, #dc2626 33.33%, #dc2626 41.66%, white 41.66%, white 50%, #dc2626 50%, #dc2626 58.33%, white 58.33%, white 66.66%, #dc2626 66.66%, #dc2626 75%, white 75%, white 83.33%, #dc2626 83.33%, #dc2626 91.66%, white 91.66%, white 100%)
             `,
-            backgroundSize: '8px 40px, 8px 8px',
+            backgroundSize: '6px 30px, 6px 6px',
           }}>
             {/* Traditional Gamusa circular motifs */}
             <div className="absolute inset-0" style={{
               backgroundImage: `
-                radial-gradient(circle at 6px 20px, #dc2626 1px, transparent 2px),
-                radial-gradient(circle at 6px 60px, #dc2626 1px, transparent 2px),
-                radial-gradient(circle at 6px 100px, #dc2626 1px, transparent 2px),
-                radial-gradient(circle at 6px 140px, #dc2626 1px, transparent 2px)
+                radial-gradient(circle at 3px 15px, #dc2626 0.5px, transparent 1px),
+                radial-gradient(circle at 3px 45px, #dc2626 0.5px, transparent 1px),
+                radial-gradient(circle at 3px 75px, #dc2626 0.5px, transparent 1px),
+                radial-gradient(circle at 3px 105px, #dc2626 0.5px, transparent 1px)
               `,
-              backgroundSize: '12px 80px'
+              backgroundSize: '6px 60px'
             }}></div>
             {/* Geometric diamond pattern */}
             <div className="absolute inset-0 opacity-70" style={{
               backgroundImage: `
-                conic-gradient(from 45deg at 6px 10px, #dc2626 0deg 90deg, transparent 90deg 180deg, #dc2626 180deg 270deg, transparent 270deg 360deg),
-                conic-gradient(from 45deg at 6px 30px, transparent 0deg 90deg, #dc2626 90deg 180deg, transparent 180deg 270deg, #dc2626 270deg 360deg)
+                conic-gradient(from 45deg at 3px 7px, #dc2626 0deg 90deg, transparent 90deg 180deg, #dc2626 180deg 270deg, transparent 270deg 360deg),
+                conic-gradient(from 45deg at 3px 22px, transparent 0deg 90deg, #dc2626 90deg 180deg, transparent 180deg 270deg, #dc2626 270deg 360deg)
               `,
-              backgroundSize: '12px 20px'
+              backgroundSize: '6px 15px'
             }}></div>
           </div>
         </div>
         
         {/* Main Content with proper margins */}
-        <div className="ml-12 sm:ml-8 md:ml-12 mr-12 sm:mr-8 md:mr-12 text-base sm:text-sm md:text-base">
+        <div className="ml-6 sm:ml-4 md:ml-8 lg:ml-12 mr-6 sm:mr-4 md:mr-8 lg:mr-12 text-base sm:text-sm md:text-base">
           {/* Header */}
           <div className="bg-gradient-to-r from-red-600 to-red-700 text-white py-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
