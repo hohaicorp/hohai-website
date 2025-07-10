@@ -27,6 +27,7 @@ import {
   Eye
 } from 'lucide-react'
 import Link from 'next/link'
+import ResponsiveNav from "../../components/ResponsiveNav";
 
 export default function WebsiteService() {
   const processSteps = [
@@ -209,6 +210,7 @@ export default function WebsiteService() {
 
   return (
     <div className="min-h-screen bg-white">
+      <ResponsiveNav />
       {/* Header */}
       <div className="bg-gradient-to-r from-red-600 to-red-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

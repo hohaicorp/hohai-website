@@ -159,9 +159,10 @@ export default function Home() {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  // Touch gesture handlers
+  // Enhanced touch gesture handlers
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
     setTouchStart(e.targetTouches[0].clientX)
+    setTouchEnd(null) // Reset touch end
   }, [])
 
   const handleTouchMove = useCallback((e: React.TouchEvent) => {
@@ -195,6 +196,19 @@ export default function Home() {
     
     window.addEventListener('keydown', handleEscape)
     return () => window.removeEventListener('keydown', handleEscape)
+  }, [isMenuOpen])
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
   }, [isMenuOpen])
 
   // Carousel auto-play functionality
@@ -407,72 +421,72 @@ export default function Home() {
       onTouchEnd={handleTouchEnd}
     >
       {/* Gamusa Side Strips - Left */}
-      <div className="fixed left-0 top-0 w-12 sm:w-8 md:w-12 h-full bg-red-600 z-40">
+      <div className="fixed left-0 top-0 w-6 sm:w-4 md:w-8 lg:w-12 h-full bg-red-600 z-40">
         <div className="w-full h-full bg-white" style={{
           backgroundImage: `
             linear-gradient(0deg, #dc2626 0%, #dc2626 10%, white 10%, white 20%, #dc2626 20%, #dc2626 30%, white 30%, white 40%, #dc2626 40%, #dc2626 50%, white 50%, white 60%, #dc2626 60%, #dc2626 70%, white 70%, white 80%, #dc2626 80%, #dc2626 90%, white 90%, white 100%),
             linear-gradient(90deg, #dc2626 0%, #dc2626 8.33%, white 8.33%, white 16.66%, #dc2626 16.66%, #dc2626 25%, white 25%, white 33.33%, #dc2626 33.33%, #dc2626 41.66%, white 41.66%, white 50%, #dc2626 50%, #dc2626 58.33%, white 58.33%, white 66.66%, #dc2626 66.66%, #dc2626 75%, white 75%, white 83.33%, #dc2626 83.33%, #dc2626 91.66%, white 91.66%, white 100%)
           `,
-          backgroundSize: '8px 40px, 8px 8px',
+          backgroundSize: '6px 30px, 6px 6px',
         }}>
           {/* Traditional Gamusa circular motifs */}
           <div className="absolute inset-0" style={{
             backgroundImage: `
-              radial-gradient(circle at 6px 20px, #dc2626 1px, transparent 2px),
-              radial-gradient(circle at 6px 60px, #dc2626 1px, transparent 2px),
-              radial-gradient(circle at 6px 100px, #dc2626 1px, transparent 2px),
-              radial-gradient(circle at 6px 140px, #dc2626 1px, transparent 2px)
+              radial-gradient(circle at 3px 15px, #dc2626 0.5px, transparent 1px),
+              radial-gradient(circle at 3px 45px, #dc2626 0.5px, transparent 1px),
+              radial-gradient(circle at 3px 75px, #dc2626 0.5px, transparent 1px),
+              radial-gradient(circle at 3px 105px, #dc2626 0.5px, transparent 1px)
             `,
-            backgroundSize: '12px 80px'
+            backgroundSize: '6px 60px'
           }}></div>
           {/* Geometric diamond pattern */}
           <div className="absolute inset-0 opacity-70" style={{
             backgroundImage: `
-              conic-gradient(from 45deg at 6px 10px, #dc2626 0deg 90deg, transparent 90deg 180deg, #dc2626 180deg 270deg, transparent 270deg 360deg),
-              conic-gradient(from 45deg at 6px 30px, transparent 0deg 90deg, #dc2626 90deg 180deg, transparent 180deg 270deg, #dc2626 270deg 360deg)
+              conic-gradient(from 45deg at 3px 7px, #dc2626 0deg 90deg, transparent 90deg 180deg, #dc2626 180deg 270deg, transparent 270deg 360deg),
+              conic-gradient(from 45deg at 3px 22px, transparent 0deg 90deg, #dc2626 90deg 180deg, transparent 180deg 270deg, #dc2626 270deg 360deg)
             `,
-            backgroundSize: '12px 20px'
+            backgroundSize: '6px 15px'
           }}></div>
         </div>
       </div>
       
       {/* Gamusa Side Strips - Right */}
-      <div className="fixed right-0 top-0 w-12 sm:w-8 md:w-12 h-full bg-red-600 z-40">
+      <div className="fixed right-0 top-0 w-6 sm:w-4 md:w-8 lg:w-12 h-full bg-red-600 z-40">
         <div className="w-full h-full bg-white" style={{
           backgroundImage: `
             linear-gradient(0deg, #dc2626 0%, #dc2626 10%, white 10%, white 20%, #dc2626 20%, #dc2626 30%, white 30%, white 40%, #dc2626 40%, #dc2626 50%, white 50%, white 60%, #dc2626 60%, #dc2626 70%, white 70%, white 80%, #dc2626 80%, #dc2626 90%, white 90%, white 100%),
             linear-gradient(90deg, #dc2626 0%, #dc2626 8.33%, white 8.33%, white 16.66%, #dc2626 16.66%, #dc2626 25%, white 25%, white 33.33%, #dc2626 33.33%, #dc2626 41.66%, white 41.66%, white 50%, #dc2626 50%, #dc2626 58.33%, white 58.33%, white 66.66%, #dc2626 66.66%, #dc2626 75%, white 75%, white 83.33%, #dc2626 83.33%, #dc2626 91.66%, white 91.66%, white 100%)
           `,
-          backgroundSize: '8px 40px, 8px 8px',
+          backgroundSize: '6px 30px, 6px 6px',
         }}>
           {/* Traditional Gamusa circular motifs */}
           <div className="absolute inset-0" style={{
             backgroundImage: `
-              radial-gradient(circle at 6px 20px, #dc2626 1px, transparent 2px),
-              radial-gradient(circle at 6px 60px, #dc2626 1px, transparent 2px),
-              radial-gradient(circle at 6px 100px, #dc2626 1px, transparent 2px),
-              radial-gradient(circle at 6px 140px, #dc2626 1px, transparent 2px)
+              radial-gradient(circle at 3px 15px, #dc2626 0.5px, transparent 1px),
+              radial-gradient(circle at 3px 45px, #dc2626 0.5px, transparent 1px),
+              radial-gradient(circle at 3px 75px, #dc2626 0.5px, transparent 1px),
+              radial-gradient(circle at 3px 105px, #dc2626 0.5px, transparent 1px)
             `,
-            backgroundSize: '12px 80px'
+            backgroundSize: '6px 60px'
           }}></div>
           {/* Geometric diamond pattern */}
           <div className="absolute inset-0 opacity-70" style={{
             backgroundImage: `
-              conic-gradient(from 45deg at 6px 10px, #dc2626 0deg 90deg, transparent 90deg 180deg, #dc2626 180deg 270deg, transparent 270deg 360deg),
-              conic-gradient(from 45deg at 6px 30px, transparent 0deg 90deg, #dc2626 90deg 180deg, transparent 180deg 270deg, #dc2626 270deg 360deg)
+              conic-gradient(from 45deg at 3px 7px, #dc2626 0deg 90deg, transparent 90deg 180deg, #dc2626 180deg 270deg, transparent 270deg 360deg),
+              conic-gradient(from 45deg at 3px 22px, transparent 0deg 90deg, #dc2626 90deg 180deg, transparent 180deg 270deg, #dc2626 270deg 360deg)
             `,
-            backgroundSize: '12px 20px'
+            backgroundSize: '6px 15px'
           }}></div>
         </div>
       </div>
       
-             {/* Main Content with proper margins */}
-       <div className="ml-12 sm:ml-8 md:ml-12 mr-12 sm:mr-8 md:mr-12 text-base sm:text-sm md:text-base">
-         {/* Navigation */}
-         <nav className={`fixed top-0 left-12 right-12 z-50 transition-all duration-300 ${
-           isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'
-         }`}>
-           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Main Content with proper margins */}
+      <div className="ml-6 sm:ml-4 md:ml-8 lg:ml-12 mr-6 sm:mr-4 md:mr-8 lg:mr-12 text-base sm:text-sm md:text-base">
+        {/* Navigation */}
+        <nav className={`fixed top-0 left-6 right-6 sm:left-4 sm:right-4 md:left-8 md:right-8 lg:left-12 lg:right-12 z-50 transition-all duration-300 ${
+          isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'
+        }`}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center">
                 <h1 className="text-2xl font-bold text-red-600">HOHAI</h1>
@@ -492,39 +506,57 @@ export default function Home() {
                 </Link>
               </div>
 
-              {/* Mobile Menu Button */}
+              {/* Mobile Menu Button - Enhanced */}
               <div className="md:hidden">
-                <button
+                <motion.button
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className="text-gray-700 hover:text-red-600"
+                  className="relative p-2 text-gray-700 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 rounded-lg"
+                  whileTap={{ scale: 0.95 }}
                 >
-                  {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-                </button>
+                  <div className="w-6 h-6 relative">
+                    <motion.span
+                      className="absolute top-1 left-0 w-6 h-0.5 bg-current transform transition-all duration-300"
+                      animate={isMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+                    />
+                    <motion.span
+                      className="absolute top-3 left-0 w-6 h-0.5 bg-current transform transition-all duration-300"
+                      animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+                    />
+                    <motion.span
+                      className="absolute top-5 left-0 w-6 h-0.5 bg-current transform transition-all duration-300"
+                      animate={isMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+                    />
+                  </div>
+                </motion.button>
               </div>
             </div>
 
-            {/* Mobile Menu */}
+            {/* Mobile Menu - Side Drawer from Right */}
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ 
-                opacity: isMenuOpen ? 1 : 0,
-                height: isMenuOpen ? "auto" : 0
-              }}
+              initial={{ x: "100%" }}
+              animate={{ x: isMenuOpen ? "0%" : "100%" }}
+              exit={{ x: "100%" }}
               transition={{ 
+                type: "tween",
                 duration: 0.3,
                 ease: "easeInOut"
               }}
-              className="md:hidden bg-white border-t border-gray-200 overflow-hidden"
+              className="md:hidden fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-[60] overflow-hidden"
             >
-              <motion.div 
-                className="px-2 pt-2 pb-3 space-y-1"
-                initial={{ y: -20 }}
-                animate={{ y: isMenuOpen ? 0 : -20 }}
-                transition={{ 
-                  duration: 0.3,
-                  delay: isMenuOpen ? 0.1 : 0
-                }}
-              >
+              {/* Menu Header */}
+              <div className="flex justify-between items-center p-6 border-b border-gray-200 bg-gradient-to-r from-red-50 to-red-100">
+                <h2 className="text-xl font-bold text-red-600">HOHAI</h2>
+                <motion.button
+                  onClick={() => setIsMenuOpen(false)}
+                  className="p-2 text-gray-700 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 rounded-lg hover:bg-white transition-colors"
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <X className="w-6 h-6" />
+                </motion.button>
+              </div>
+
+              {/* Menu Content */}
+              <div className="p-6 space-y-4 overflow-y-auto h-full pb-24">
                 {[
                   { href: "#home", label: "Home" },
                   { href: "#services", label: "Services" },
@@ -535,43 +567,59 @@ export default function Home() {
                   <motion.a
                     key={item.href}
                     href={item.href}
-                    className="block px-3 py-3 text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200"
-                    initial={{ opacity: 0, x: -20 }}
+                    className="block px-4 py-4 text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-300 font-medium text-lg border-l-4 border-transparent hover:border-red-600"
+                    initial={{ opacity: 0, x: 20 }}
                     animate={{ 
-                      opacity: isMenuOpen ? 1 : 0,
-                      x: isMenuOpen ? 0 : -20
+                      opacity: 1,
+                      x: 0
                     }}
                     transition={{ 
                       duration: 0.3,
-                      delay: isMenuOpen ? 0.1 + index * 0.05 : 0
+                      delay: index * 0.1
                     }}
                     onClick={() => setIsMenuOpen(false)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
                     {item.label}
                   </motion.a>
                 ))}
+                
                 <Link href="/contact">
                   <motion.button 
-                    className="w-full mt-3 bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors font-semibold"
+                    className="w-full mt-6 bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-4 rounded-lg hover:from-red-700 hover:to-red-800 transition-all duration-300 font-semibold shadow-lg text-lg"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ 
-                      opacity: isMenuOpen ? 1 : 0,
-                      scale: isMenuOpen ? 1 : 0.9
+                      opacity: 1,
+                      scale: 1
                     }}
                     transition={{ 
                       duration: 0.3,
-                      delay: isMenuOpen ? 0.3 : 0
+                      delay: 0.6
                     }}
                     onClick={() => setIsMenuOpen(false)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
                     Get Started
                   </motion.button>
                 </Link>
-              </motion.div>
+              </div>
             </motion.div>
+
+            {/* Overlay for mobile menu */}
+            {isMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-[55]"
+                onClick={() => setIsMenuOpen(false)}
+              />
+            )}
           </div>
         </nav>
-
         {/* Hero Section */}
         <section id="home" className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 to-white overflow-hidden">
           {/* Parallax background elements */}
