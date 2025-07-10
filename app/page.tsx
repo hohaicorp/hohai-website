@@ -407,13 +407,13 @@ export default function Home() {
       onTouchEnd={handleTouchEnd}
     >
       {/* Gamusa Side Strips - Left */}
-      <div className="fixed left-0 top-0 w-12 h-full bg-red-600 z-40">
+      <div className="fixed left-0 top-0 w-12 sm:w-8 md:w-12 h-full bg-red-600 z-40">
         <div className="w-full h-full bg-white" style={{
           backgroundImage: `
             linear-gradient(0deg, #dc2626 0%, #dc2626 10%, white 10%, white 20%, #dc2626 20%, #dc2626 30%, white 30%, white 40%, #dc2626 40%, #dc2626 50%, white 50%, white 60%, #dc2626 60%, #dc2626 70%, white 70%, white 80%, #dc2626 80%, #dc2626 90%, white 90%, white 100%),
             linear-gradient(90deg, #dc2626 0%, #dc2626 8.33%, white 8.33%, white 16.66%, #dc2626 16.66%, #dc2626 25%, white 25%, white 33.33%, #dc2626 33.33%, #dc2626 41.66%, white 41.66%, white 50%, #dc2626 50%, #dc2626 58.33%, white 58.33%, white 66.66%, #dc2626 66.66%, #dc2626 75%, white 75%, white 83.33%, #dc2626 83.33%, #dc2626 91.66%, white 91.66%, white 100%)
           `,
-          backgroundSize: '12px 40px, 12px 12px'
+          backgroundSize: '8px 40px, 8px 8px',
         }}>
           {/* Traditional Gamusa circular motifs */}
           <div className="absolute inset-0" style={{
@@ -437,13 +437,13 @@ export default function Home() {
       </div>
       
       {/* Gamusa Side Strips - Right */}
-      <div className="fixed right-0 top-0 w-12 h-full bg-red-600 z-40">
+      <div className="fixed right-0 top-0 w-12 sm:w-8 md:w-12 h-full bg-red-600 z-40">
         <div className="w-full h-full bg-white" style={{
           backgroundImage: `
             linear-gradient(0deg, #dc2626 0%, #dc2626 10%, white 10%, white 20%, #dc2626 20%, #dc2626 30%, white 30%, white 40%, #dc2626 40%, #dc2626 50%, white 50%, white 60%, #dc2626 60%, #dc2626 70%, white 70%, white 80%, #dc2626 80%, #dc2626 90%, white 90%, white 100%),
             linear-gradient(90deg, #dc2626 0%, #dc2626 8.33%, white 8.33%, white 16.66%, #dc2626 16.66%, #dc2626 25%, white 25%, white 33.33%, #dc2626 33.33%, #dc2626 41.66%, white 41.66%, white 50%, #dc2626 50%, #dc2626 58.33%, white 58.33%, white 66.66%, #dc2626 66.66%, #dc2626 75%, white 75%, white 83.33%, #dc2626 83.33%, #dc2626 91.66%, white 91.66%, white 100%)
           `,
-          backgroundSize: '12px 40px, 12px 12px'
+          backgroundSize: '8px 40px, 8px 8px',
         }}>
           {/* Traditional Gamusa circular motifs */}
           <div className="absolute inset-0" style={{
@@ -467,7 +467,7 @@ export default function Home() {
       </div>
       
              {/* Main Content with proper margins */}
-       <div className="ml-12 mr-12">
+       <div className="ml-12 sm:ml-8 md:ml-12 mr-12 sm:mr-8 md:mr-12 text-base sm:text-sm md:text-base">
          {/* Navigation */}
          <nav className={`fixed top-0 left-12 right-12 z-50 transition-all duration-300 ${
            isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'
