@@ -8,13 +8,11 @@ export default function MeetOurTeam() {
   return (
     <div className="min-h-screen bg-white">
       <ResponsiveNav />
-      {/* Back to Main Menu Button */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex justify-end">
-        <Link href="/">
-          <button className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg hover:from-red-700 hover:to-red-800 transition-all duration-300 font-semibold shadow-lg text-base sm:text-lg flex items-center gap-2">
-            <ArrowLeft className="w-5 h-5" />
-            Back to Main Menu
-          </button>
+      {/* Back to Home Link */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-8">
+        <Link href="/" className="inline-flex items-center text-red-100 hover:text-red-600 transition-colors">
+          <ArrowLeft className="w-5 h-5 mr-2" />
+          Back to Home
         </Link>
       </div>
       {/* Gamusa Side Strips - Left */}

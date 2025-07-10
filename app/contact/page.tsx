@@ -177,15 +177,7 @@
     return (
       <div className="min-h-screen bg-white">
         <ResponsiveNav />
-        {/* Meet Our Team Button */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex justify-end">
-          <button
-            onClick={() => router.push('/meet-our-team')}
-            className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg hover:from-red-700 hover:to-red-800 transition-all duration-300 font-semibold shadow-lg text-base sm:text-lg"
-          >
-            Meet Our Team
-          </button>
-        </div>
+        
         {/* Gamusa Side Strips - Left */}
         <div className="fixed left-0 top-0 w-6 sm:w-4 md:w-8 lg:w-12 h-full bg-red-600 z-40">
           <div className="w-full h-full bg-white" style={{
@@ -524,10 +516,12 @@
                     <Calendar className="w-5 h-5 mr-2" />
                     Schedule a Call
                   </button>
-                  <button className="w-full border-2 border-red-600 text-red-600 py-3 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-colors flex items-center justify-center">
-                    <Users className="w-5 h-5 mr-2" />
-                    Meet Our Team
-                  </button>
+                  <Link href="/meet-our-team" legacyBehavior>
+                    <a className="w-full block border-2 border-red-600 text-red-600 py-3 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-colors flex items-center justify-center">
+                      <Users className="w-5 h-5 mr-2" />
+                      Meet Our Team
+                    </a>
+                  </Link>
                 </div>
               </motion.div>
             </div>
