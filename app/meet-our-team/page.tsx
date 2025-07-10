@@ -8,13 +8,6 @@ export default function MeetOurTeam() {
   return (
     <div className="min-h-screen bg-white">
       <ResponsiveNav />
-      {/* Back to Home Link */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-8">
-        <Link href="/" className="inline-flex items-center text-red-100 hover:text-red-600 transition-colors">
-          <ArrowLeft className="w-5 h-5 mr-2" />
-          Back to Home
-        </Link>
-      </div>
       {/* Gamusa Side Strips - Left */}
       <div className="fixed left-0 top-0 w-6 sm:w-4 md:w-8 lg:w-12 h-full bg-red-600 z-40">
         <div className="w-full h-full bg-white" style={{
