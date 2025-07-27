@@ -57,7 +57,7 @@ const projects = [
     category: "Website",
     description: "A modern portfolio website showcasing creative work with smooth animations and interactive elements.",
     technologies: ["Next.js", "Framer Motion", "TypeScript", "Tailwind CSS", "GSAP"],
-    image: "/screenshots/gym-destop.jpg",
+    image: "/screenshots/dms-desktop.jpg",
     demoUrl: "#",
     githubUrl: "#",
     deviceType: "laptop"
@@ -68,7 +68,7 @@ const projects = [
     category: "Web Application",
     description: "A weather dashboard with real-time data, interactive maps, and detailed weather forecasts.",
     technologies: ["React", "OpenWeather API", "Chart.js", "Geolocation", "PWA"],
-    image: "/screenshots/gym-mobile.jpg",
+    image: "/screenshots/dms-mobile.jpg",
     demoUrl: "#",
     githubUrl: "#",
     deviceType: "mobile"
