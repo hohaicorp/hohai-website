@@ -18,6 +18,12 @@ import {
   Eye,
   Heart
 } from 'lucide-react'
+import {
+  AndroidMockup,
+  AndroidTabMockup,
+  IPhoneMockup,
+  IPadMockup
+} from "react-device-mockup"
 
 const projects = [
   {
@@ -234,19 +240,16 @@ export default function Projects() {
                         whileHover={{ y: -10, scale: 1.02 }}
                         transition={{ duration: 0.3 }}
                       >
-                        {/* Laptop Screenshot */}
-                        <div className="relative rounded-lg overflow-hidden shadow-2xl">
-                          <div className="bg-white rounded-lg overflow-hidden aspect-video relative">
-                            {/* Gym Website Screenshot */}
-                            <div className="relative w-full h-full">
-                              <Image
-                                src="/screenshots/gym-destop.jpg"
-                                alt="PowerFit Pro Desktop Screenshot"
-                                fill
-                                className="object-cover"
-                                sizes="(max-width: 768px) 100vw, 50vw"
-                              />
-                            </div>
+                        {/* Desktop Screenshot with iPad Mockup */}
+                        <IPadMockup screenWidth={600}>
+                          <div className="relative w-full h-full">
+                            <Image
+                              src="/screenshots/gym-destop.jpg"
+                              alt="PowerFit Pro Desktop Screenshot"
+                              fill
+                              className="object-cover"
+                              sizes="(max-width: 768px) 100vw, 50vw"
+                            />
                             
                             {/* Hover Overlay */}
                             <motion.div
@@ -289,7 +292,7 @@ export default function Projects() {
                               </div>
                             </motion.div>
                           </div>
-                        </div>
+                        </IPadMockup>
                       </motion.div>
                     ) : (
                       <motion.div 
@@ -297,19 +300,16 @@ export default function Projects() {
                         whileHover={{ y: -10, scale: 1.02 }}
                         transition={{ duration: 0.3 }}
                       >
-                        {/* Mobile Screenshot */}
-                        <div className="relative rounded-xl overflow-hidden shadow-2xl">
-                          <div className="bg-white rounded-xl overflow-hidden aspect-[9/16] relative">
-                            {/* Mobile Screenshot */}
-                            <div className="relative w-full h-full">
-                              <Image
-                                src="/screenshots/gym-mobile.jpg"
-                                alt="PowerFit Pro Mobile Screenshot"
-                                fill
-                                className="object-cover"
-                                sizes="(max-width: 768px) 100vw, 25vw"
-                              />
-                            </div>
+                        {/* Mobile Screenshot with iPhone Mockup */}
+                        <IPhoneMockup screenWidth={300}>
+                          <div className="relative w-full h-full">
+                            <Image
+                              src="/screenshots/gym-mobile.jpg"
+                              alt="PowerFit Pro Mobile Screenshot"
+                              fill
+                              className="object-cover"
+                              sizes="(max-width: 768px) 100vw, 25vw"
+                            />
                             
                             {/* Hover Overlay */}
                             <motion.div
@@ -352,7 +352,7 @@ export default function Projects() {
                               </div>
                             </motion.div>
                           </div>
-                        </div>
+                        </IPhoneMockup>
                       </motion.div>
                     )}
                   </div>
