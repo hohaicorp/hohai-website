@@ -234,70 +234,57 @@ export default function Projects() {
                         whileHover={{ y: -10, scale: 1.02 }}
                         transition={{ duration: 0.3 }}
                       >
-                        {/* Custom Laptop Mockup */}
-                        <div className="relative">
-                          {/* Laptop Base */}
-                          <div className="bg-gradient-to-b from-gray-800 to-gray-900 rounded-lg p-4 shadow-2xl">
-                            {/* Screen Frame */}
-                            <div className="bg-black rounded-t-lg p-2">
-                              {/* Camera */}
-                              <div className="w-2 h-2 bg-gray-600 rounded-full mx-auto mb-2"></div>
-                              {/* Screen */}
-                              <div className="bg-white rounded-lg overflow-hidden aspect-video relative">
-                                <Image
-                                  src="/screenshots/gym-destop.jpg"
-                                  alt="PowerFit Pro Desktop Screenshot"
-                                  fill
-                                  className="object-cover"
-                                  sizes="(max-width: 768px) 100vw, 50vw"
-                                />
-                                
-                                {/* Hover Overlay */}
-                                <motion.div
-                                  className="absolute inset-0 bg-black/80 flex items-center justify-center"
-                                  initial={{ opacity: 0 }}
-                                  animate={{ opacity: isHovered === project.id ? 1 : 0 }}
-                                  transition={{ duration: 0.3 }}
-                                >
-                                  <div className="text-center text-white">
-                                    <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                                      <motion.button
-                                        className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold mb-3 transition-colors"
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                      >
-                                        <Play className="w-5 h-5 inline mr-2" />
-                                        View Demo
-                                      </motion.button>
-                                    </Link>
-                                    <div className="flex justify-center space-x-3">
-                                      <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                                        <motion.button
-                                          className="bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-lg transition-colors"
-                                          whileHover={{ scale: 1.1 }}
-                                          whileTap={{ scale: 0.9 }}
-                                        >
-                                          <ExternalLink className="w-4 h-4" />
-                                        </motion.button>
-                                      </Link>
-                                      <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                                        <motion.button
-                                          className="bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-lg transition-colors"
-                                          whileHover={{ scale: 1.1 }}
-                                          whileTap={{ scale: 0.9 }}
-                                        >
-                                          <Github className="w-4 h-4" />
-                                        </motion.button>
-                                      </Link>
-                                    </div>
-                                  </div>
-                                </motion.div>
+                        {/* Clean Laptop Mockup */}
+                        <div className="relative rounded-lg overflow-hidden shadow-2xl">
+                          <div className="bg-white rounded-lg overflow-hidden aspect-video relative">
+                            <Image
+                              src="/screenshots/gym-destop.jpg"
+                              alt="PowerFit Pro Desktop Screenshot"
+                              fill
+                              className="object-cover"
+                              sizes="(max-width: 768px) 100vw, 50vw"
+                            />
+                            
+                            {/* Hover Overlay */}
+                            <motion.div
+                              className="absolute inset-0 bg-black/80 flex items-center justify-center"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: isHovered === project.id ? 1 : 0 }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              <div className="text-center text-white">
+                                <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                                  <motion.button
+                                    className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold mb-3 transition-colors"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                  >
+                                    <Play className="w-5 h-5 inline mr-2" />
+                                    View Demo
+                                  </motion.button>
+                                </Link>
+                                <div className="flex justify-center space-x-3">
+                                  <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                                    <motion.button
+                                      className="bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-lg transition-colors"
+                                      whileHover={{ scale: 1.1 }}
+                                      whileTap={{ scale: 0.9 }}
+                                    >
+                                      <ExternalLink className="w-4 h-4" />
+                                    </motion.button>
+                                  </Link>
+                                  <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                                    <motion.button
+                                      className="bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-lg transition-colors"
+                                      whileHover={{ scale: 1.1 }}
+                                      whileTap={{ scale: 0.9 }}
+                                    >
+                                      <Github className="w-4 h-4" />
+                                    </motion.button>
+                                  </Link>
+                                </div>
                               </div>
-                            </div>
-                            {/* Keyboard Area */}
-                            <div className="bg-gradient-to-b from-gray-700 to-gray-800 rounded-b-lg p-3 mt-2">
-                              <div className="w-16 h-1 bg-gray-600 rounded-full mx-auto"></div>
-                            </div>
+                            </motion.div>
                           </div>
                         </div>
                       </motion.div>
@@ -307,65 +294,57 @@ export default function Projects() {
                         whileHover={{ y: -10, scale: 1.02 }}
                         transition={{ duration: 0.3 }}
                       >
-                        {/* Custom Phone Mockup */}
-                        <div className="relative">
-                          {/* Phone Frame */}
-                          <div className="bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-3 shadow-2xl">
-                            {/* Screen */}
-                            <div className="bg-black rounded-2xl p-1">
-                              <div className="bg-white rounded-xl overflow-hidden aspect-[9/16] relative">
-                                <Image
-                                  src="/screenshots/gym-mobile.jpg"
-                                  alt="PowerFit Pro Mobile Screenshot"
-                                  fill
-                                  className="object-cover"
-                                  sizes="(max-width: 768px) 100vw, 25vw"
-                                />
-                                
-                                {/* Hover Overlay */}
-                                <motion.div
-                                  className="absolute inset-0 bg-black/80 flex items-center justify-center"
-                                  initial={{ opacity: 0 }}
-                                  animate={{ opacity: isHovered === project.id ? 1 : 0 }}
-                                  transition={{ duration: 0.3 }}
-                                >
-                                  <div className="text-center text-white">
-                                    <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                                      <motion.button
-                                        className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold mb-2 transition-colors text-sm"
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                      >
-                                        <Play className="w-4 h-4 inline mr-1" />
-                                        Demo
-                                      </motion.button>
-                                    </Link>
-                                    <div className="flex justify-center space-x-2">
-                                      <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                                        <motion.button
-                                          className="bg-gray-800 hover:bg-gray-700 text-white p-1.5 rounded-lg transition-colors"
-                                          whileHover={{ scale: 1.1 }}
-                                          whileTap={{ scale: 0.9 }}
-                                        >
-                                          <ExternalLink className="w-3 h-3" />
-                                        </motion.button>
-                                      </Link>
-                                      <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                                        <motion.button
-                                          className="bg-gray-800 hover:bg-gray-700 text-white p-1.5 rounded-lg transition-colors"
-                                          whileHover={{ scale: 1.1 }}
-                                          whileTap={{ scale: 0.9 }}
-                                        >
-                                          <Github className="w-3 h-3" />
-                                        </motion.button>
-                                      </Link>
-                                    </div>
-                                  </div>
-                                </motion.div>
+                        {/* Clean Phone Mockup */}
+                        <div className="relative rounded-xl overflow-hidden shadow-2xl">
+                          <div className="bg-white rounded-xl overflow-hidden aspect-[9/16] relative">
+                            <Image
+                              src="/screenshots/gym-mobile.jpg"
+                              alt="PowerFit Pro Mobile Screenshot"
+                              fill
+                              className="object-cover"
+                              sizes="(max-width: 768px) 100vw, 25vw"
+                            />
+                            
+                            {/* Hover Overlay */}
+                            <motion.div
+                              className="absolute inset-0 bg-black/80 flex items-center justify-center"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: isHovered === project.id ? 1 : 0 }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              <div className="text-center text-white">
+                                <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                                  <motion.button
+                                    className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold mb-2 transition-colors text-sm"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                  >
+                                    <Play className="w-4 h-4 inline mr-1" />
+                                    Demo
+                                  </motion.button>
+                                </Link>
+                                <div className="flex justify-center space-x-2">
+                                  <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                                    <motion.button
+                                      className="bg-gray-800 hover:bg-gray-700 text-white p-1.5 rounded-lg transition-colors"
+                                      whileHover={{ scale: 1.1 }}
+                                      whileTap={{ scale: 0.9 }}
+                                    >
+                                      <ExternalLink className="w-3 h-3" />
+                                    </motion.button>
+                                  </Link>
+                                  <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                                    <motion.button
+                                      className="bg-gray-800 hover:bg-gray-700 text-white p-1.5 rounded-lg transition-colors"
+                                      whileHover={{ scale: 1.1 }}
+                                      whileTap={{ scale: 0.9 }}
+                                    >
+                                      <Github className="w-3 h-3" />
+                                    </motion.button>
+                                  </Link>
+                                </div>
                               </div>
-                            </div>
-                            {/* Home Indicator */}
-                            <div className="w-12 h-1 bg-gray-600 rounded-full mx-auto mt-2"></div>
+                            </motion.div>
                           </div>
                         </div>
                       </motion.div>
