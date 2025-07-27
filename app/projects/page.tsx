@@ -31,7 +31,7 @@ const projects = [
   },
   {
     id: 3,
-    title: "Dhunu Munu Super Mart (DMSM)",
+    title: "DMSM Admin",
     category: "E-Commerce Platform",
     description: "A comprehensive e-commerce platform for Dhunu Munu Super Mart featuring consumer mobile app, delivery management, and admin panel. Complete solution with inventory management, order tracking, and payment processing.",
     technologies: ["React Native", "Node.js", "MongoDB", "Express.js", "Payment Gateway", "Real-time Tracking"],
