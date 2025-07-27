@@ -229,116 +229,87 @@ export default function Projects() {
                   {/* Device Mockup */}
                   <div className="relative">
                     {project.deviceType === 'laptop' ? (
-                                          <motion.div 
-                      className="relative mx-auto w-full max-w-md animate-float"
-                      whileHover={{ y: -10, scale: 1.02 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                        {/* Laptop Frame */}
-                        <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-lg p-4 shadow-2xl">
-                          <div className="bg-black rounded-t-lg p-2">
-                            <div className="flex space-x-2">
-                              <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                              <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                                                                <motion.div 
+                        className="relative mx-auto w-full max-w-2xl animate-float"
+                        whileHover={{ y: -10, scale: 1.02 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {/* Laptop Screenshot */}
+                        <div className="relative rounded-lg overflow-hidden shadow-2xl">
+                          <div className="bg-white rounded-lg overflow-hidden aspect-video relative">
+                            {/* Gym Website Screenshot */}
+                            <div className="relative w-full h-full">
+                              <Image
+                                src="/screenshots/gym-destop.jpg"
+                                alt="PowerFit Pro Desktop Screenshot"
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                              />
                             </div>
-                          </div>
-                          <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-b-lg p-1">
-                            <div className="bg-white rounded-lg overflow-hidden aspect-video relative">
-                              {/* Project Preview Content */}
-                              <div className="absolute inset-0 bg-white overflow-hidden">
-                                {/* Browser Header */}
-                                <div className="bg-gray-100 px-3 py-2 flex items-center justify-between text-xs border-b border-gray-200">
-                                  <div className="flex items-center space-x-2">
-                                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                                  </div>
-                                  <div className="bg-white px-3 py-1 rounded text-gray-600 font-medium shadow-sm">
-                                    PowerFit Pro
-                                  </div>
-                                  <div className="w-4"></div>
-                                </div>
-
-                                {/* Gym Website Screenshot */}
-                                <div className="relative w-full h-full">
-                                  <Image
-                                    src="/screenshots/gym-destop.jpg"
-                                    alt="PowerFit Pro Desktop Screenshot"
-                                    fill
-                                    className="object-cover"
-                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                  />
-                                </div>
-                              </div>
-                              
-                              {/* Hover Overlay */}
-                              <motion.div
-                                className="absolute inset-0 bg-black/80 flex items-center justify-center"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: isHovered === project.id ? 1 : 0 }}
-                                transition={{ duration: 0.3 }}
-                              >
-                                <div className="text-center text-white">
+                            
+                            {/* Hover Overlay */}
+                            <motion.div
+                              className="absolute inset-0 bg-black/80 flex items-center justify-center"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: isHovered === project.id ? 1 : 0 }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              <div className="text-center text-white">
+                                <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                                  <motion.button
+                                    className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold mb-3 transition-colors"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                  >
+                                    <Play className="w-5 h-5 inline mr-2" />
+                                    View Demo
+                                  </motion.button>
+                                </Link>
+                                <div className="flex justify-center space-x-3">
                                   <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
                                     <motion.button
-                                      className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold mb-3 transition-colors"
-                                      whileHover={{ scale: 1.05 }}
-                                      whileTap={{ scale: 0.95 }}
+                                      className="bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-lg transition-colors"
+                                      whileHover={{ scale: 1.1 }}
+                                      whileTap={{ scale: 0.9 }}
                                     >
-                                      <Play className="w-5 h-5 inline mr-2" />
-                                      View Demo
+                                      <ExternalLink className="w-4 h-4" />
                                     </motion.button>
                                   </Link>
-                                  <div className="flex justify-center space-x-3">
-                                    <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                                      <motion.button
-                                        className="bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-lg transition-colors"
-                                        whileHover={{ scale: 1.1 }}
-                                        whileTap={{ scale: 0.9 }}
-                                      >
-                                        <ExternalLink className="w-4 h-4" />
-                                      </motion.button>
-                                    </Link>
-                                    <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                                      <motion.button
-                                        className="bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-lg transition-colors"
-                                        whileHover={{ scale: 1.1 }}
-                                        whileTap={{ scale: 0.9 }}
-                                      >
-                                        <Github className="w-4 h-4" />
-                                      </motion.button>
-                                    </Link>
-                                  </div>
+                                  <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                                    <motion.button
+                                      className="bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-lg transition-colors"
+                                      whileHover={{ scale: 1.1 }}
+                                      whileTap={{ scale: 0.9 }}
+                                    >
+                                      <Github className="w-4 h-4" />
+                                    </motion.button>
+                                  </Link>
                                 </div>
-                              </motion.div>
-                            </div>
+                              </div>
+                            </motion.div>
                           </div>
                         </div>
                       </motion.div>
                     ) : (
                       <motion.div 
-                        className="relative mx-auto w-full max-w-xs animate-float"
+                        className="relative mx-auto w-full max-w-sm animate-float"
                         whileHover={{ y: -10, scale: 1.02 }}
                         transition={{ duration: 0.3 }}
                       >
-                        {/* Mobile Frame */}
-                        <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-3 shadow-2xl">
-                          <div className="bg-black rounded-2xl p-1">
-                            <div className="bg-white rounded-xl overflow-hidden aspect-[9/16] relative">
-                              {/* Project Preview Content */}
-                              <div className="absolute inset-0 bg-white overflow-hidden">
-                                {/* Mobile Screenshot */}
-                                <div className="relative w-full h-full">
-                                  <Image
-                                    src="/screenshots/gym-mobile.jpg"
-                                    alt="PowerFit Pro Mobile Screenshot"
-                                    fill
-                                    className="object-cover"
-                                    sizes="(max-width: 768px) 100vw, 25vw"
-                                  />
-                                </div>
-                              </div>
+                        {/* Mobile Screenshot */}
+                        <div className="relative rounded-xl overflow-hidden shadow-2xl">
+                          <div className="bg-white rounded-xl overflow-hidden aspect-[9/16] relative">
+                            {/* Mobile Screenshot */}
+                            <div className="relative w-full h-full">
+                              <Image
+                                src="/screenshots/gym-mobile.jpg"
+                                alt="PowerFit Pro Mobile Screenshot"
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, 25vw"
+                              />
+                            </div>
                               
                               {/* Hover Overlay */}
                               <motion.div
