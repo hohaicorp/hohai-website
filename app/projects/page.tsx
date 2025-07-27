@@ -229,7 +229,7 @@ export default function Projects() {
                   {/* Device Mockup */}
                   <div className="relative">
                     {project.deviceType === 'laptop' ? (
-                                                                <motion.div 
+                      <motion.div 
                         className="relative mx-auto w-full max-w-2xl animate-float"
                         whileHover={{ y: -10, scale: 1.02 }}
                         transition={{ duration: 0.3 }}
@@ -310,48 +310,47 @@ export default function Projects() {
                                 sizes="(max-width: 768px) 100vw, 25vw"
                               />
                             </div>
-                              
-                              {/* Hover Overlay */}
-                              <motion.div
-                                className="absolute inset-0 bg-black/80 flex items-center justify-center"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: isHovered === project.id ? 1 : 0 }}
-                                transition={{ duration: 0.3 }}
-                              >
-                                <div className="text-center text-white">
+                            
+                            {/* Hover Overlay */}
+                            <motion.div
+                              className="absolute inset-0 bg-black/80 flex items-center justify-center"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: isHovered === project.id ? 1 : 0 }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              <div className="text-center text-white">
+                                <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                                  <motion.button
+                                    className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold mb-2 transition-colors text-sm"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                  >
+                                    <Play className="w-4 h-4 inline mr-1" />
+                                    Demo
+                                  </motion.button>
+                                </Link>
+                                <div className="flex justify-center space-x-2">
                                   <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
                                     <motion.button
-                                      className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold mb-2 transition-colors text-sm"
-                                      whileHover={{ scale: 1.05 }}
-                                      whileTap={{ scale: 0.95 }}
+                                      className="bg-gray-800 hover:bg-gray-700 text-white p-1.5 rounded-lg transition-colors"
+                                      whileHover={{ scale: 1.1 }}
+                                      whileTap={{ scale: 0.9 }}
                                     >
-                                      <Play className="w-4 h-4 inline mr-1" />
-                                      Demo
+                                      <ExternalLink className="w-3 h-3" />
                                     </motion.button>
                                   </Link>
-                                  <div className="flex justify-center space-x-2">
-                                    <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                                      <motion.button
-                                        className="bg-gray-800 hover:bg-gray-700 text-white p-1.5 rounded-lg transition-colors"
-                                        whileHover={{ scale: 1.1 }}
-                                        whileTap={{ scale: 0.9 }}
-                                      >
-                                        <ExternalLink className="w-3 h-3" />
-                                      </motion.button>
-                                    </Link>
-                                    <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                                      <motion.button
-                                        className="bg-gray-800 hover:bg-gray-700 text-white p-1.5 rounded-lg transition-colors"
-                                        whileHover={{ scale: 1.1 }}
-                                        whileTap={{ scale: 0.9 }}
-                                      >
-                                        <Github className="w-3 h-3" />
-                                      </motion.button>
-                                    </Link>
-                                  </div>
+                                  <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                                    <motion.button
+                                      className="bg-gray-800 hover:bg-gray-700 text-white p-1.5 rounded-lg transition-colors"
+                                      whileHover={{ scale: 1.1 }}
+                                      whileTap={{ scale: 0.9 }}
+                                    >
+                                      <Github className="w-3 h-3" />
+                                    </motion.button>
+                                  </Link>
                                 </div>
-                              </motion.div>
-                            </div>
+                              </div>
+                            </motion.div>
                           </div>
                         </div>
                       </motion.div>
