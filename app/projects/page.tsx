@@ -18,27 +18,20 @@ import {
   Eye,
   Heart
 } from 'lucide-react'
-import {
-  AndroidMockup,
-  AndroidTabMockup,
-  IPhoneMockup,
-  IPadMockup
-} from "react-device-mockup"
-
 
 const projects = [
   {
     id: 1,
-    title: "E-Commerce Platform",
-    category: "Web Application",
-    description: "A modern e-commerce platform with advanced features like real-time inventory, AI-powered recommendations, and seamless payment integration.",
-    technologies: ["React", "Node.js", "MongoDB", "Stripe", "AWS"],
+    title: "FitLife Gym Website",
+    category: "Website",
+    description: "A modern, responsive gym website with class booking, trainer profiles, and fitness tracking features. Built with HTML5, CSS3, and JavaScript.",
+    technologies: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "Fitness UI/UX"],
     image: "/api/placeholder/600/400",
     demoUrl: "#",
     githubUrl: "#",
     featured: true,
     deviceType: "laptop",
-    previewContent: "ecommerce-preview"
+    previewContent: "gym-preview"
   },
   {
     id: 2,
@@ -236,94 +229,118 @@ export default function Projects() {
                   {/* Device Mockup */}
                   <div className="relative">
                     {project.deviceType === 'laptop' ? (
-                      <motion.div 
-                        className="relative mx-auto w-full max-w-md animate-float"
-                        whileHover={{ y: -10, scale: 1.02 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <IPadMockup screenWidth={400}>
-                          {/* Project Preview Content */}
-                          <div className="w-full h-full bg-white overflow-hidden">
-                            {/* Browser Header */}
-                            <div className="bg-gray-100 px-3 py-2 flex items-center justify-between text-xs border-b border-gray-200">
-                              <div className="flex items-center space-x-2">
-                                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                              </div>
-                              <div className="bg-white px-3 py-1 rounded text-gray-600 font-medium shadow-sm">
-                                {project.title}
-                              </div>
-                              <div className="w-4"></div>
-                            </div>
-
-                            {/* Web Content Preview */}
-                            <div className="p-3">
-                              {/* Hero Section */}
-                              <div className="bg-gradient-to-r from-gray-100 to-gray-200 rounded-lg p-4 mb-3 shadow-sm">
-                                <div className="flex items-center justify-between mb-2">
-                                  <h3 className="text-sm font-bold text-gray-800">Web Project Presentation</h3>
-                                  <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                                </div>
-                                <div className="bg-white rounded-lg p-2 mb-2 shadow-sm">
-                                  <div className="w-full h-16 bg-gradient-to-br from-purple-400 to-pink-400 rounded flex items-center justify-center">
-                                    <div className="text-white text-xs font-semibold">Featured Image</div>
-                                  </div>
-                                </div>
-                                <div className="text-xs text-gray-600">
-                                  Modern web showcase with responsive design
-                                </div>
-                              </div>
-
-                              {/* Content Sections */}
-                              <div className="space-y-2">
-                                <div className="bg-gray-50 rounded p-2 shadow-sm">
-                                  <div className="w-full h-8 bg-gray-200 rounded mb-1"></div>
-                                  <div className="w-3/4 h-4 bg-gray-200 rounded"></div>
-                                </div>
-                                <div className="bg-gray-50 rounded p-2 shadow-sm">
-                                  <div className="w-full h-8 bg-gray-200 rounded mb-1"></div>
-                                  <div className="w-2/3 h-4 bg-gray-200 rounded"></div>
-                                </div>
-                              </div>
+                                          <motion.div 
+                      className="relative mx-auto w-full max-w-md animate-float"
+                      whileHover={{ y: -10, scale: 1.02 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                        {/* Laptop Frame */}
+                        <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-lg p-4 shadow-2xl">
+                          <div className="bg-black rounded-t-lg p-2">
+                            <div className="flex space-x-2">
+                              <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                              <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                             </div>
                           </div>
-                          
-                          {/* Hover Overlay */}
-                          <motion.div
-                            className="absolute inset-0 bg-black/80 flex items-center justify-center"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: isHovered === project.id ? 1 : 0 }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            <div className="text-center text-white">
-                              <motion.button
-                                className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold mb-3 transition-colors"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                              >
-                                <Play className="w-5 h-5 inline mr-2" />
-                                View Demo
-                              </motion.button>
-                              <div className="flex justify-center space-x-3">
-                                <motion.button
-                                  className="bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-lg transition-colors"
-                                  whileHover={{ scale: 1.1 }}
-                                  whileTap={{ scale: 0.9 }}
-                                >
-                                  <ExternalLink className="w-4 h-4" />
-                                </motion.button>
-                                <motion.button
-                                  className="bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-lg transition-colors"
-                                  whileHover={{ scale: 1.1 }}
-                                  whileTap={{ scale: 0.9 }}
-                                >
-                                  <Github className="w-4 h-4" />
-                                </motion.button>
+                          <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-b-lg p-1">
+                            <div className="bg-white rounded-lg overflow-hidden aspect-video relative">
+                              {/* Project Preview Content */}
+                              <div className="absolute inset-0 bg-white overflow-hidden">
+                                {/* Browser Header */}
+                                <div className="bg-gray-100 px-3 py-2 flex items-center justify-between text-xs border-b border-gray-200">
+                                  <div className="flex items-center space-x-2">
+                                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                                  </div>
+                                  <div className="bg-white px-3 py-1 rounded text-gray-600 font-medium shadow-sm">
+                                    FitLife Gym
+                                  </div>
+                                  <div className="w-4"></div>
+                                </div>
+
+                                {/* Gym Website Preview */}
+                                <div className="p-3">
+                                  {/* Hero Section */}
+                                  <div className="bg-gradient-to-r from-red-500 to-red-600 rounded-lg p-3 mb-3 text-white">
+                                    <div className="flex items-center justify-between mb-2">
+                                      <h3 className="text-sm font-bold">FitLife - Work Hard To Get Better Life</h3>
+                                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                                    </div>
+                                    <div className="bg-white/20 rounded-lg p-2 mb-2">
+                                      <div className="w-full h-12 bg-white/30 rounded flex items-center justify-center">
+                                        <div className="text-white text-xs font-semibold">🏋️ Hero Banner</div>
+                                      </div>
+                                    </div>
+                                    <div className="text-xs text-white/90">
+                                      Modern fitness website with class booking
+                                    </div>
+                                  </div>
+
+                                  {/* Navigation */}
+                                  <div className="bg-gray-50 rounded p-2 mb-3">
+                                    <div className="flex justify-between items-center">
+                                      <div className="flex space-x-2">
+                                        <div className="w-8 h-4 bg-red-500 rounded text-white text-xs flex items-center justify-center">Home</div>
+                                        <div className="w-8 h-4 bg-gray-300 rounded text-xs flex items-center justify-center">About</div>
+                                        <div className="w-8 h-4 bg-gray-300 rounded text-xs flex items-center justify-center">Classes</div>
+                                      </div>
+                                      <div className="w-6 h-4 bg-red-500 rounded text-white text-xs flex items-center justify-center">Join</div>
+                                    </div>
+                                  </div>
+
+                                  {/* Content Sections */}
+                                  <div className="space-y-2">
+                                    <div className="bg-gray-50 rounded p-2">
+                                      <div className="w-full h-6 bg-gray-200 rounded mb-1"></div>
+                                      <div className="w-3/4 h-4 bg-gray-200 rounded"></div>
+                                    </div>
+                                    <div className="bg-gray-50 rounded p-2">
+                                      <div className="w-full h-6 bg-gray-200 rounded mb-1"></div>
+                                      <div className="w-2/3 h-4 bg-gray-200 rounded"></div>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
+                              
+                              {/* Hover Overlay */}
+                              <motion.div
+                                className="absolute inset-0 bg-black/80 flex items-center justify-center"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: isHovered === project.id ? 1 : 0 }}
+                                transition={{ duration: 0.3 }}
+                              >
+                                <div className="text-center text-white">
+                                  <motion.button
+                                    className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold mb-3 transition-colors"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                  >
+                                    <Play className="w-5 h-5 inline mr-2" />
+                                    View Demo
+                                  </motion.button>
+                                  <div className="flex justify-center space-x-3">
+                                    <motion.button
+                                      className="bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-lg transition-colors"
+                                      whileHover={{ scale: 1.1 }}
+                                      whileTap={{ scale: 0.9 }}
+                                    >
+                                      <ExternalLink className="w-4 h-4" />
+                                    </motion.button>
+                                    <motion.button
+                                      className="bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-lg transition-colors"
+                                      whileHover={{ scale: 1.1 }}
+                                      whileTap={{ scale: 0.9 }}
+                                    >
+                                      <Github className="w-4 h-4" />
+                                    </motion.button>
+                                  </div>
+                                </div>
+                              </motion.div>
                             </div>
-                          </motion.div>
-                        </IPadMockup>
+                          </div>
+                        </div>
                       </motion.div>
                     ) : (
                       <motion.div 
@@ -331,97 +348,50 @@ export default function Projects() {
                         whileHover={{ y: -10, scale: 1.02 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <IPhoneMockup screenWidth={200}>
-                          {/* Project Preview Content */}
-                          <div className="w-full h-full bg-white overflow-hidden">
-                            {/* Mobile App Header */}
-                            <div className="bg-gradient-to-r from-blue-500 to-purple-600 px-4 py-3 text-white">
-                              <div className="flex items-center justify-between">
-                                <div className="flex items-center space-x-2">
-                                  <div className="w-2 h-2 bg-white rounded-full"></div>
-                                  <div className="w-2 h-2 bg-white rounded-full"></div>
-                                  <div className="w-2 h-2 bg-white rounded-full"></div>
-                                </div>
-                                <div className="text-xs font-semibold">{project.title}</div>
-                                <div className="w-6"></div>
-                              </div>
-                            </div>
-
-                            {/* Mobile App Content */}
-                            <div className="p-4">
-                              {/* App Icon */}
-                              <div className="flex justify-center mb-4">
-                                <div className="w-16 h-16 bg-gradient-to-br from-red-400 to-pink-500 rounded-2xl flex items-center justify-center">
-                                  <div className="text-white text-xs font-bold">APP</div>
-                                </div>
-                              </div>
-
-                              {/* App Content */}
-                              <div className="space-y-3">
-                                <div className="bg-gray-50 rounded-lg p-3">
-                                  <div className="w-full h-6 bg-gray-200 rounded mb-2"></div>
-                                  <div className="w-2/3 h-4 bg-gray-200 rounded"></div>
-                                </div>
-                                <div className="bg-gray-50 rounded-lg p-3">
-                                  <div className="w-full h-6 bg-gray-200 rounded mb-2"></div>
-                                  <div className="w-3/4 h-4 bg-gray-200 rounded"></div>
-                                </div>
-                                <div className="bg-gray-50 rounded-lg p-3">
-                                  <div className="w-full h-6 bg-gray-200 rounded mb-2"></div>
-                                  <div className="w-1/2 h-4 bg-gray-200 rounded"></div>
-                                </div>
-                              </div>
-
-                              {/* Bottom Navigation */}
-                              <div className="absolute bottom-0 left-0 right-0 bg-gray-100 border-t border-gray-200 px-4 py-2">
-                                <div className="flex justify-around">
-                                  <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-                                  <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-                                  <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-                                  <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-                                </div>
-                              </div>
+                        {/* Mobile Frame */}
+                        <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-3 shadow-2xl">
+                          <div className="bg-black rounded-2xl p-1">
+                            <div className="bg-white rounded-xl overflow-hidden aspect-[9/16] relative">
+                              {/* Project Preview Content */}
+                              <div className="absolute inset-0 bg-gradient-to-br from-yellow-50 to-yellow-100"></div>
                               
-                              {/* Home Indicator */}
-                              <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-gray-400 rounded-full"></div>
+                              {/* Hover Overlay */}
+                              <motion.div
+                                className="absolute inset-0 bg-black/80 flex items-center justify-center"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: isHovered === project.id ? 1 : 0 }}
+                                transition={{ duration: 0.3 }}
+                              >
+                                <div className="text-center text-white">
+                                  <motion.button
+                                    className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold mb-2 transition-colors text-sm"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                  >
+                                    <Play className="w-4 h-4 inline mr-1" />
+                                    Demo
+                                  </motion.button>
+                                  <div className="flex justify-center space-x-2">
+                                    <motion.button
+                                      className="bg-gray-800 hover:bg-gray-700 text-white p-1.5 rounded-lg transition-colors"
+                                      whileHover={{ scale: 1.1 }}
+                                      whileTap={{ scale: 0.9 }}
+                                    >
+                                      <ExternalLink className="w-3 h-3" />
+                                    </motion.button>
+                                    <motion.button
+                                      className="bg-gray-800 hover:bg-gray-700 text-white p-1.5 rounded-lg transition-colors"
+                                      whileHover={{ scale: 1.1 }}
+                                      whileTap={{ scale: 0.9 }}
+                                    >
+                                      <Github className="w-3 h-3" />
+                                    </motion.button>
+                                  </div>
+                                </div>
+                              </motion.div>
                             </div>
                           </div>
-                          
-                          {/* Hover Overlay */}
-                          <motion.div
-                            className="absolute inset-0 bg-black/80 flex items-center justify-center"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: isHovered === project.id ? 1 : 0 }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            <div className="text-center text-white">
-                              <motion.button
-                                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold mb-2 transition-colors text-sm"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                              >
-                                <Play className="w-4 h-4 inline mr-1" />
-                                Demo
-                              </motion.button>
-                              <div className="flex justify-center space-x-2">
-                                <motion.button
-                                  className="bg-gray-800 hover:bg-gray-700 text-white p-1.5 rounded-lg transition-colors"
-                                  whileHover={{ scale: 1.1 }}
-                                  whileTap={{ scale: 0.9 }}
-                                >
-                                  <ExternalLink className="w-3 h-3" />
-                                </motion.button>
-                                <motion.button
-                                  className="bg-gray-800 hover:bg-gray-700 text-white p-1.5 rounded-lg transition-colors"
-                                  whileHover={{ scale: 1.1 }}
-                                  whileTap={{ scale: 0.9 }}
-                                >
-                                  <Github className="w-3 h-3" />
-                                </motion.button>
-                              </div>
-                            </div>
-                          </motion.div>
-                        </IPhoneMockup>
+                        </div>
                       </motion.div>
                     )}
                   </div>
