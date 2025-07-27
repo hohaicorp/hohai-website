@@ -35,7 +35,7 @@ const projects = [
     category: "E-Commerce Platform",
     description: "A comprehensive e-commerce platform for Dhunu Munu Super Mart featuring consumer mobile app, delivery management, and admin panel. Complete solution with inventory management, order tracking, and payment processing.",
     technologies: ["React Native", "Node.js", "MongoDB", "Express.js", "Payment Gateway", "Real-time Tracking"],
-    image: "/screenshots/dms-mobile.jpg",
+    image: "/screenshots/dms-mobile.png",
     demoUrl: "#",
     githubUrl: "#",
     deviceType: "laptop"
