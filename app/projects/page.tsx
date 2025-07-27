@@ -159,6 +159,27 @@ export default function ProjectsPage() {
       </div>
 
       <div className="relative z-10 container mx-auto px-4 py-16">
+        {/* Back to Dashboard Button */}
+        <motion.div
+          className="mb-8"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <Link href="/">
+            <motion.button
+              className="inline-flex items-center gap-2 bg-white border-2 border-red-600 text-red-600 hover:bg-red-50 px-6 py-3 rounded-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              Back to Dashboard
+            </motion.button>
+          </Link>
+        </motion.div>
+
         {/* Header Section */}
         <motion.div
           className="text-center mb-16"
