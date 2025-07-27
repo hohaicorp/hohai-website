@@ -27,7 +27,7 @@ const projects = [
     description: "A modern, responsive gym website with class booking, trainer profiles, and fitness tracking features. Built with HTML5, CSS3, and JavaScript.",
     technologies: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "Fitness UI/UX"],
     image: "/api/placeholder/600/400",
-    demoUrl: "#",
+    demoUrl: "/gym-website/index.html",
     githubUrl: "#",
     featured: true,
     deviceType: "laptop",
@@ -40,7 +40,7 @@ const projects = [
     description: "A comprehensive fitness tracking app with workout plans, nutrition tracking, and social features for motivation.",
     technologies: ["React Native", "Firebase", "Redux", "HealthKit"],
     image: "/api/placeholder/600/400",
-    demoUrl: "#",
+    demoUrl: "/gym-website/index.html",
     githubUrl: "#",
     featured: true,
     deviceType: "mobile",
@@ -79,7 +79,7 @@ const projects = [
     description: "A food delivery app with real-time tracking, multiple payment options, and restaurant management system.",
     technologies: ["Flutter", "Node.js", "MongoDB", "Google Maps API"],
     image: "/api/placeholder/600/400",
-    demoUrl: "#",
+    demoUrl: "/gym-website/index.html",
     githubUrl: "#",
     featured: true,
     deviceType: "mobile",
@@ -263,18 +263,18 @@ export default function Projects() {
                                 {/* Gym Website Preview */}
                                 <div className="p-3">
                                   {/* Hero Section */}
-                                  <div className="bg-gradient-to-r from-red-500 to-red-600 rounded-lg p-3 mb-3 text-white">
+                                  <div className="bg-white rounded-lg p-3 mb-3 border border-gray-200">
                                     <div className="flex items-center justify-between mb-2">
-                                      <h3 className="text-sm font-bold">FitLife - Work Hard To Get Better Life</h3>
-                                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                                      <h3 className="text-sm font-bold text-gray-800">PowerFit Pro</h3>
+                                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
                                     </div>
-                                    <div className="bg-white/20 rounded-lg p-2 mb-2">
-                                      <div className="w-full h-12 bg-white/30 rounded flex items-center justify-center">
-                                        <div className="text-white text-xs font-semibold">🏋️ Hero Banner</div>
+                                    <div className="bg-gray-100 rounded-lg p-2 mb-2">
+                                      <div className="w-full h-12 bg-gray-200 rounded flex items-center justify-center">
+                                        <div className="text-gray-600 text-xs font-semibold">🏋️ Hero Banner</div>
                                       </div>
                                     </div>
-                                    <div className="text-xs text-white/90">
-                                      Modern fitness website with class booking
+                                    <div className="text-xs text-gray-600">
+                                      Clean modern fitness website design
                                     </div>
                                   </div>
 
@@ -282,11 +282,11 @@ export default function Projects() {
                                   <div className="bg-gray-50 rounded p-2 mb-3">
                                     <div className="flex justify-between items-center">
                                       <div className="flex space-x-2">
-                                        <div className="w-8 h-4 bg-red-500 rounded text-white text-xs flex items-center justify-center">Home</div>
+                                        <div className="w-8 h-4 bg-gray-800 rounded text-white text-xs flex items-center justify-center">Home</div>
                                         <div className="w-8 h-4 bg-gray-300 rounded text-xs flex items-center justify-center">About</div>
                                         <div className="w-8 h-4 bg-gray-300 rounded text-xs flex items-center justify-center">Classes</div>
                                       </div>
-                                      <div className="w-6 h-4 bg-red-500 rounded text-white text-xs flex items-center justify-center">Join</div>
+                                      <div className="w-6 h-4 bg-gray-800 rounded text-white text-xs flex items-center justify-center">Join</div>
                                     </div>
                                   </div>
 
@@ -312,29 +312,35 @@ export default function Projects() {
                                 transition={{ duration: 0.3 }}
                               >
                                 <div className="text-center text-white">
-                                  <motion.button
-                                    className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold mb-3 transition-colors"
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                  >
-                                    <Play className="w-5 h-5 inline mr-2" />
-                                    View Demo
-                                  </motion.button>
+                                  <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                                    <motion.button
+                                      className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold mb-3 transition-colors"
+                                      whileHover={{ scale: 1.05 }}
+                                      whileTap={{ scale: 0.95 }}
+                                    >
+                                      <Play className="w-5 h-5 inline mr-2" />
+                                      View Demo
+                                    </motion.button>
+                                  </Link>
                                   <div className="flex justify-center space-x-3">
-                                    <motion.button
-                                      className="bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-lg transition-colors"
-                                      whileHover={{ scale: 1.1 }}
-                                      whileTap={{ scale: 0.9 }}
-                                    >
-                                      <ExternalLink className="w-4 h-4" />
-                                    </motion.button>
-                                    <motion.button
-                                      className="bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-lg transition-colors"
-                                      whileHover={{ scale: 1.1 }}
-                                      whileTap={{ scale: 0.9 }}
-                                    >
-                                      <Github className="w-4 h-4" />
-                                    </motion.button>
+                                    <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                                      <motion.button
+                                        className="bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-lg transition-colors"
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.9 }}
+                                      >
+                                        <ExternalLink className="w-4 h-4" />
+                                      </motion.button>
+                                    </Link>
+                                    <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                                      <motion.button
+                                        className="bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-lg transition-colors"
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.9 }}
+                                      >
+                                        <Github className="w-4 h-4" />
+                                      </motion.button>
+                                    </Link>
                                   </div>
                                 </div>
                               </motion.div>
@@ -363,29 +369,35 @@ export default function Projects() {
                                 transition={{ duration: 0.3 }}
                               >
                                 <div className="text-center text-white">
-                                  <motion.button
-                                    className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold mb-2 transition-colors text-sm"
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                  >
-                                    <Play className="w-4 h-4 inline mr-1" />
-                                    Demo
-                                  </motion.button>
+                                  <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                                    <motion.button
+                                      className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold mb-2 transition-colors text-sm"
+                                      whileHover={{ scale: 1.05 }}
+                                      whileTap={{ scale: 0.95 }}
+                                    >
+                                      <Play className="w-4 h-4 inline mr-1" />
+                                      Demo
+                                    </motion.button>
+                                  </Link>
                                   <div className="flex justify-center space-x-2">
-                                    <motion.button
-                                      className="bg-gray-800 hover:bg-gray-700 text-white p-1.5 rounded-lg transition-colors"
-                                      whileHover={{ scale: 1.1 }}
-                                      whileTap={{ scale: 0.9 }}
-                                    >
-                                      <ExternalLink className="w-3 h-3" />
-                                    </motion.button>
-                                    <motion.button
-                                      className="bg-gray-800 hover:bg-gray-700 text-white p-1.5 rounded-lg transition-colors"
-                                      whileHover={{ scale: 1.1 }}
-                                      whileTap={{ scale: 0.9 }}
-                                    >
-                                      <Github className="w-3 h-3" />
-                                    </motion.button>
+                                    <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                                      <motion.button
+                                        className="bg-gray-800 hover:bg-gray-700 text-white p-1.5 rounded-lg transition-colors"
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.9 }}
+                                      >
+                                        <ExternalLink className="w-3 h-3" />
+                                      </motion.button>
+                                    </Link>
+                                    <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                                      <motion.button
+                                        className="bg-gray-800 hover:bg-gray-700 text-white p-1.5 rounded-lg transition-colors"
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.9 }}
+                                      >
+                                        <Github className="w-3 h-3" />
+                                      </motion.button>
+                                    </Link>
                                   </div>
                                 </div>
                               </motion.div>
@@ -436,22 +448,26 @@ export default function Projects() {
                     
                     {/* Action Buttons */}
                     <div className="flex justify-center space-x-4">
-                      <motion.button
-                        className="bg-gradient-to-r from-red-500 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-red-500/25 transition-all duration-300 animate-pulse-glow"
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <Eye className="w-4 h-4 inline mr-2" />
-                        View Project
-                      </motion.button>
-                      <motion.button
-                        className="border border-gray-600 text-gray-300 px-6 py-3 rounded-lg font-semibold hover:border-red-500 hover:text-red-400 transition-all duration-300"
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <Heart className="w-4 h-4 inline mr-2" />
-                        Like
-                      </motion.button>
+                      <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                        <motion.button
+                          className="bg-gradient-to-r from-red-500 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-red-500/25 transition-all duration-300 animate-pulse-glow"
+                          whileHover={{ scale: 1.05, y: -2 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Eye className="w-4 h-4 inline mr-2" />
+                          View Project
+                        </motion.button>
+                      </Link>
+                      <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                        <motion.button
+                          className="border border-gray-600 text-gray-300 px-6 py-3 rounded-lg font-semibold hover:border-red-500 hover:text-red-400 transition-all duration-300"
+                          whileHover={{ scale: 1.05, y: -2 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Code className="w-4 h-4 inline mr-2" />
+                          View Code
+                        </motion.button>
+                      </Link>
                     </div>
                   </motion.div>
                 </motion.div>
