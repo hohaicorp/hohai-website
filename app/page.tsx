@@ -664,13 +664,15 @@ export default function Home() {
                     <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
                   </motion.button>
                 </Link>
-                <motion.button 
-                  className="border-2 border-red-600 text-red-600 px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-red-600 hover:text-white transition-colors active:scale-95"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  View Our Work
-                </motion.button>
+                <Link href="/projects">
+                  <motion.button 
+                    className="border-2 border-red-600 text-red-600 px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-red-600 hover:text-white transition-colors active:scale-95"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    View Our Work
+                  </motion.button>
+                </Link>
               </div>
             </motion.div>
           </div>
