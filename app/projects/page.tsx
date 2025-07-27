@@ -22,7 +22,7 @@ import {
 const projects = [
   {
     id: 1,
-    title: "FitLife Gym Website",
+    title: "PowerFit Pro Gym Website",
     category: "Website",
     description: "A modern, responsive gym website with class booking, trainer profiles, and fitness tracking features. Built with HTML5, CSS3, and JavaScript.",
     technologies: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "Fitness UI/UX"],
@@ -35,16 +35,16 @@ const projects = [
   },
   {
     id: 2,
-    title: "Fitness Tracking App",
-    category: "Mobile Application",
-    description: "A comprehensive fitness tracking app with workout plans, nutrition tracking, and social features for motivation.",
-    technologies: ["React Native", "Firebase", "Redux", "HealthKit"],
+    title: "PowerFit Pro Mobile",
+    category: "Mobile Website",
+    description: "Mobile-optimized version of the PowerFit Pro gym website with responsive design and touch-friendly interface.",
+    technologies: ["HTML5", "CSS3", "JavaScript", "Mobile-First Design", "Touch UI/UX"],
     image: "/api/placeholder/600/400",
     demoUrl: "/gym-website/index.html",
     githubUrl: "#",
     featured: true,
     deviceType: "mobile",
-    previewContent: "fitness-preview"
+    previewContent: "gym-mobile-preview"
   },
   {
     id: 3,
@@ -255,52 +255,20 @@ export default function Projects() {
                                     <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                                   </div>
                                   <div className="bg-white px-3 py-1 rounded text-gray-600 font-medium shadow-sm">
-                                    FitLife Gym
+                                    PowerFit Pro
                                   </div>
                                   <div className="w-4"></div>
                                 </div>
 
-                                {/* Gym Website Preview */}
-                                <div className="p-3">
-                                  {/* Hero Section */}
-                                  <div className="bg-white rounded-lg p-3 mb-3 border border-gray-200">
-                                    <div className="flex items-center justify-between mb-2">
-                                      <h3 className="text-sm font-bold text-gray-800">PowerFit Pro</h3>
-                                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                                    </div>
-                                    <div className="bg-gray-100 rounded-lg p-2 mb-2">
-                                      <div className="w-full h-12 bg-gray-200 rounded flex items-center justify-center">
-                                        <div className="text-gray-600 text-xs font-semibold">🏋️ Hero Banner</div>
-                                      </div>
-                                    </div>
-                                    <div className="text-xs text-gray-600">
-                                      Clean modern fitness website design
-                                    </div>
-                                  </div>
-
-                                  {/* Navigation */}
-                                  <div className="bg-gray-50 rounded p-2 mb-3">
-                                    <div className="flex justify-between items-center">
-                                      <div className="flex space-x-2">
-                                        <div className="w-8 h-4 bg-gray-800 rounded text-white text-xs flex items-center justify-center">Home</div>
-                                        <div className="w-8 h-4 bg-gray-300 rounded text-xs flex items-center justify-center">About</div>
-                                        <div className="w-8 h-4 bg-gray-300 rounded text-xs flex items-center justify-center">Classes</div>
-                                      </div>
-                                      <div className="w-6 h-4 bg-gray-800 rounded text-white text-xs flex items-center justify-center">Join</div>
-                                    </div>
-                                  </div>
-
-                                  {/* Content Sections */}
-                                  <div className="space-y-2">
-                                    <div className="bg-gray-50 rounded p-2">
-                                      <div className="w-full h-6 bg-gray-200 rounded mb-1"></div>
-                                      <div className="w-3/4 h-4 bg-gray-200 rounded"></div>
-                                    </div>
-                                    <div className="bg-gray-50 rounded p-2">
-                                      <div className="w-full h-6 bg-gray-200 rounded mb-1"></div>
-                                      <div className="w-2/3 h-4 bg-gray-200 rounded"></div>
-                                    </div>
-                                  </div>
+                                {/* Gym Website Screenshot */}
+                                <div className="relative w-full h-full">
+                                  <Image
+                                    src="/screenshots/gym-destop.jpg"
+                                    alt="PowerFit Pro Desktop Screenshot"
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                  />
                                 </div>
                               </div>
                               
@@ -359,7 +327,18 @@ export default function Projects() {
                           <div className="bg-black rounded-2xl p-1">
                             <div className="bg-white rounded-xl overflow-hidden aspect-[9/16] relative">
                               {/* Project Preview Content */}
-                              <div className="absolute inset-0 bg-gradient-to-br from-yellow-50 to-yellow-100"></div>
+                              <div className="absolute inset-0 bg-white overflow-hidden">
+                                {/* Mobile Screenshot */}
+                                <div className="relative w-full h-full">
+                                  <Image
+                                    src="/screenshots/gym-mobile.jpg"
+                                    alt="PowerFit Pro Mobile Screenshot"
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 768px) 100vw, 25vw"
+                                  />
+                                </div>
+                              </div>
                               
                               {/* Hover Overlay */}
                               <motion.div
