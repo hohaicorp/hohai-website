@@ -35,7 +35,7 @@ const projects = [
     category: "E-Commerce Platform",
     description: "A comprehensive e-commerce platform for Dhunu Munu Super Mart featuring consumer mobile app, delivery management, and admin panel. Complete solution with inventory management, order tracking, and payment processing.",
     technologies: ["React Native", "Node.js", "MongoDB", "Express.js", "Payment Gateway", "Real-time Tracking"],
-    image: "/screenshots/dms-desktop.jpg",
+    image: "/screenshots/dms-mobile.jpg",
     demoUrl: "#",
     githubUrl: "#",
     deviceType: "laptop"
@@ -46,7 +46,7 @@ const projects = [
     category: "Mobile App",
     description: "Consumer-side mobile application for Dhunu Munu Super Mart with product browsing, cart management, order placement, and real-time delivery tracking.",
     technologies: ["React Native", "Redux", "Firebase", "Push Notifications", "GPS Tracking", "Payment Integration"],
-    image: "/screenshots/dms-mobile.jpg",
+    image: "/screenshots/dms-desktop.jpg",
     demoUrl: "#",
     githubUrl: "#",
     deviceType: "mobile"
@@ -57,7 +57,7 @@ const projects = [
     category: "Website",
     description: "A modern portfolio website showcasing creative work with smooth animations and interactive elements.",
     technologies: ["Next.js", "Framer Motion", "TypeScript", "Tailwind CSS", "GSAP"],
-    image: "/screenshots/dms-desktop.jpg",
+    image: "/screenshots/dms-mobile.jpg",
     demoUrl: "#",
     githubUrl: "#",
     deviceType: "laptop"
@@ -68,7 +68,7 @@ const projects = [
     category: "Web Application",
     description: "A weather dashboard with real-time data, interactive maps, and detailed weather forecasts.",
     technologies: ["React", "OpenWeather API", "Chart.js", "Geolocation", "PWA"],
-    image: "/screenshots/dms-mobile.jpg",
+    image: "/screenshots/dms-desktop.jpg",
     demoUrl: "#",
     githubUrl: "#",
     deviceType: "mobile"
