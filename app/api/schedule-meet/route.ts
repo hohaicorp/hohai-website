@@ -6,9 +6,9 @@ const prisma = new PrismaClient()
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, phone, enquiry } = await request.json()
+    const { name, phone, email, enquiry } = await request.json()
 
-    if (!name || !phone || !enquiry) {
+    if (!name || !email || !phone || !enquiry) {
       return NextResponse.json(
         { error: 'Name, phone, and cause of enquiry are required' },
         { status: 400 }
@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
 
     // Save call request to database
     const callRequest = await prisma.callRequest.create({
-      data: { name, phone, enquiry }
+      data: { name, phone, email, enquiry }
     })
 
     // Send email to admin
