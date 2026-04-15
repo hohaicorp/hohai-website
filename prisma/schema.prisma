@@ -227,13 +227,14 @@ model Payment {
 // Testimonials
 model Testimonial {
   id          Int      @id @default(autoincrement())
-  institutionName String
+  name String
   institutionType String // "SCHOOL" | "COLLEGE" | "COACHING"
   contactPerson   String
   position        String
   email           String
   rating          Int
   testimonial     String
+  company         String
   productsUsed    String   // comma-separated
   photo           String?
   createdAt       DateTime @default(now())

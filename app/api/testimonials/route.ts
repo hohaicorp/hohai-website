@@ -17,10 +17,6 @@ export async function GET(request: NextRequest) {
         photo: true,
         rating: true,
         testimonial: true,
-        projectType: true,
-        projectDuration: true,
-        projectImprovement: true,
-        projectFeatures: true
       }
     })
 
