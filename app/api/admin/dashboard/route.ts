@@ -67,12 +67,12 @@ export async function GET(request: NextRequest) {
       },
       select: {
         id: true,
-        name: true,
+        contactPerson: true,
         position: true,
-        company: true,
+        institutionName: true,
         rating: true,
         testimonial: true,
-        projectType: true,
+        institutionType: true,
         createdAt: true
       }
     })

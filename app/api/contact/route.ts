@@ -6,11 +6,11 @@ const prisma = new PrismaClient()
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, message } = await request.json()
+    const { name, email, phone, institute, message } = await request.json()
 
-    if (!name || !email || !message) {
+    if (!name || !email || !phone || !institute) {
       return NextResponse.json(
-        { error: 'Name, email, and message are required' },
+        { error: 'Name, email, phone, and institute are required' },
         { status: 400 }
       )
     }
@@ -20,12 +20,21 @@ export async function POST(request: NextRequest) {
       data: {
         name,
         email,
-        message
-      }
+        phone: phone || '',
+        institute: institute || '',
+        type: 'INQUIRY',
+        message: message || ''
+      } as any
     })
 
     // Send emails (admin notification + customer confirmation)
-    const emailResults = await sendContactFormEmails({ name, email, message })
+    const emailResults = await sendContactFormEmails({ 
+      name, 
+      email, 
+      phone,
+      institute,
+      message: message || '' 
+    })
 
     // Log email results for debugging
     console.log('Email sending results:', emailResults)
@@ -43,6 +52,22 @@ export async function POST(request: NextRequest) {
     console.error('Contact form error:', error)
     return NextResponse.json(
       { error: 'Failed to send message' },
+      { status: 500 }
+    )
+  }
+}
+
+export async function GET() {
+  try {
+    const contacts = await prisma.contactMessage.findMany({
+      orderBy: { createdAt: 'desc' },
+      take: 50
+    })
+    return NextResponse.json({ data: contacts }, { status: 200 })
+  } catch (error) {
+    console.error('GET contact error:', error)
+    return NextResponse.json(
+      { error: 'Failed to fetch contacts' },
       { status: 500 }
     )
   }

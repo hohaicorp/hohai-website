@@ -39,8 +39,8 @@ async function seedTestimonials() {
       },
       {
         name: "Anjali Patel",
-        position: "Marketing Director, EduTech Pro",
-        company: "EduTech Pro",
+        position: "Marketing Director, HOHAI",
+        company: "HOHAI",
         photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
         rating: 5,
         testimonial: "HOHAI's expertise in educational technology is unmatched. They created a comprehensive learning management system that has helped us onboard 10,000+ students. The platform is intuitive, scalable, and has revolutionized our teaching methods.",

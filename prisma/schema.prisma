@@ -1,11 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
-// Prisma schema for HOHAI website backend
-// Run: npx prisma migrate dev --name init
+// EdTech Platform Schema for Schools, Colleges & Coaching Institutes
+// Features: ERP, Attendance, Payment Gateway, Courses, Webinars, Career Counselling
 
 generator client {
   provider = "prisma-client-js"
@@ -17,6 +11,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Admin Users
 model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
@@ -26,33 +21,245 @@ model User {
   role      String   @default("USER")
 }
 
-model Testimonial {
-  id          Int      @id @default(autoincrement())
-  name        String
-  position    String
-  company     String
-  photo       String
-  rating      Int
-  testimonial String
-  projectType String
-  projectDuration String
-  projectImprovement String
-  projectFeatures String // comma-separated
-  createdAt   DateTime @default(now())
+// Institutions (Schools, Colleges, Coaching Institutes)
+model Institution {
+  id              Int      @id @default(autoincrement())
+  name            String
+  type            String   // "SCHOOL" | "COLLEGE" | "COACHING"
+  email           String   @unique
+  phone           String
+  address         String
+  city            String
+  state           String
+  pincode         String
+  websiteUrl      String?
+  logo            String?
+  description     String?
+  studentCount    Int?
+  subscriptions   Subscription[]
+  students        InstitutionStudent[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
+// Subscription Plans
+model SubscriptionPlan {
+  id              Int      @id @default(autoincrement())
+  name            String   // "STARTER" | "PROFESSIONAL" | "ENTERPRISE"
+  price           Float
+  duration        Int      // in months
+  features        String[] // JSON array of features
+  maxStudents     Int?
+  erpAccess       Boolean  @default(false)
+  attendanceAccess Boolean @default(false)
+  paymentGateway  Boolean  @default(false)
+  coursesAccess   Boolean @default(false)
+  subscriptions   Subscription[]
+  createdAt       DateTime @default(now())
+}
+
+// Institution Subscriptions
+model Subscription {
+  id              Int      @id @default(autoincrement())
+  institutionId   Int
+  institution     Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade)
+  planId          Int
+  plan            SubscriptionPlan @relation(fields: [planId], references: [id])
+  startDate       DateTime @default(now())
+  endDate         DateTime
+  status          String   @default("ACTIVE") // "ACTIVE" | "INACTIVE" | "EXPIRED"
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Students
+model InstitutionStudent {
+  id              Int      @id @default(autoincrement())
+  institutionId   Int
+  institution     Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade)
+  enrollmentId    String   @unique
+  name            String
+  email           String
+  phone           String?
+  dateOfBirth     String?
+  address         String?
+  parentPhone     String?
+  class           String
+  rollNumber      String?
+  fatherName      String?
+  motherName      String?
+  registrationDate DateTime @default(now())
+  attendance      Attendance[]
+  enrollments     CourseEnrollment[]
+  careerSessions  CareerSession[]
+  payments        Payment[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Attendance System
+model Attendance {
+  id              Int      @id @default(autoincrement())
+  studentId       Int
+  student         InstitutionStudent @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  date            DateTime
+  status          String   // "PRESENT" | "ABSENT" | "LEAVE"
+  remarks         String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Courses & Webinars
+model Course {
+  id              Int      @id @default(autoincrement())
+  title           String
+  description     String
+  category        String   // "CAREER_COUNSELLING" | "SKILL_DEVELOPMENT" | "COMPETITIVE_EXAM"
+  duration        Int      // in hours
+  level           String   // "BEGINNER" | "INTERMEDIATE" | "ADVANCED"
+  price           Float
+  instructorName  String
+  instructorQualification String // "IIT" | "IIM" | "MNC" | etc
+  instructorBio   String?
+  image           String?
+  startDate       DateTime
+  endDate         DateTime?
+  isWebinar       Boolean  @default(false)
+  maxStudents     Int?
+  isFeatured      Boolean  @default(false)
+  enrollments     CourseEnrollment[]
+  sessionLinks    SessionLink[]
+  resources       CourseResource[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Course Enrollments
+model CourseEnrollment {
+  id              Int      @id @default(autoincrement())
+  courseId        Int
+  course          Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  studentId       Int
+  student         InstitutionStudent @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  enrollmentDate  DateTime @default(now())
+  completionPercentage Float @default(0)
+  certificateIssued Boolean @default(false)
+  certificateUrl  String?
+  payment         Payment?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Session Links (for webinars/live classes)
+model SessionLink {
+  id              Int      @id @default(autoincrement())
+  courseId        Int
+  course          Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  sessionTitle    String
+  scheduledAt     DateTime
+  meetingLink     String?
+  recordingLink   String?
+  createdAt       DateTime @default(now())
+}
+
+// Course Resources (PDFs, videos, etc)
+model CourseResource {
+  id              Int      @id @default(autoincrement())
+  courseId        Int
+  course          Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  title           String
+  type            String   // "PDF" | "VIDEO" | "DOCUMENT"
+  url             String
+  uploadedAt      DateTime @default(now())
+}
+
+// Career Counselling Sessions
+model CareerSession {
+  id              Int      @id @default(autoincrement())
+  studentId       Int
+  student         InstitutionStudent @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  counsellorName  String
+  counsellorQualification String? // "IIT" | "IIM" | "MNC" | etc
+  sessionDate     DateTime
+  duration        Int      // in minutes
+  topic           String
+  notes           String?
+  counsellingType String   // "CAREER_PATH" | "JOB_PREP" | "SKILLS_ASSESSMENT"
+  meetingLink     String?
+  status          String   @default("SCHEDULED") // "SCHEDULED" | "COMPLETED" | "CANCELLED"
+  feedback        String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Products/Modules
+model Product {
+  id              Int      @id @default(autoincrement())
+  name            String   @unique
+  description     String
+  type            String   // "ERP" | "ATTENDANCE" | "PAYMENT_GATEWAY" | "LIBRARY" | "HOSTEL"
+  features        String[] // JSON array
+  pricing         Float
+  category        String
+  image           String?
+  isFeatured      Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Payments
+model Payment {
+  id              Int      @id @default(autoincrement())
+  enrollmentId    Int      @unique
+  enrollment      CourseEnrollment @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
+  studentId       Int
+  student         InstitutionStudent @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  amount          Float
+  currency        String   @default("INR")
+  paymentMethod   String   // "RAZORPAY" | "STRIPE" | "BANK_TRANSFER"
+  transactionId   String?  @unique
+  status          String   @default("PENDING") // "PENDING" | "COMPLETED" | "FAILED"
+  paidAt          DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Testimonials
+model Testimonial {
+  id          Int      @id @default(autoincrement())
+  institutionName String
+  institutionType String // "SCHOOL" | "COLLEGE" | "COACHING"
+  contactPerson   String
+  position        String
+  email           String
+  rating          Int
+  testimonial     String
+  productsUsed    String   // comma-separated
+  photo           String?
+  createdAt       DateTime @default(now())
+}
+
+// Contact Messages
 model ContactMessage {
   id        Int      @id @default(autoincrement())
   name      String
   email     String
+  phone     String?
+  institute String?
+  type      String   // "INQUIRY" | "DEMO" | "SUPPORT"
   message   String
   createdAt DateTime @default(now())
 }
 
+// Call Requests
 model CallRequest {
   id        Int      @id @default(autoincrement())
   name      String
   phone     String
+  email     String
+  institute String?
   enquiry   String
+  status    String   @default("PENDING") // "PENDING" | "SCHEDULED" | "COMPLETED"
+  scheduledTime DateTime?
   createdAt DateTime @default(now())
 }

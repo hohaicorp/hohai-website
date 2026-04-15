@@ -60,37 +60,35 @@ export async function POST(request: NextRequest) {
     }
 
     const { 
-      name, 
-      position, 
-      company, 
-      rating, 
-      testimonial, 
-      projectType,
-      photo = '',
-      projectDuration = '',
-      projectImprovement = '',
-      projectFeatures = ''
+      institutionName,
+      institutionType,
+      contactPerson,
+      position,
+      email,
+      rating,
+      testimonial,
+      productsUsed = [],
+      photo = ''
     } = await request.json()
 
-    if (!name || !position || !company || !rating || !testimonial || !projectType) {
+    if (!institutionName || !contactPerson || !position || !email || !rating || !testimonial) {
       return NextResponse.json(
-        { error: 'Name, position, company, rating, testimonial, and projectType are required' },
+        { error: 'Required fields missing' },
         { status: 400 }
       )
     }
 
     const newTestimonial = await prisma.testimonial.create({
       data: {
-        name,
+        institutionName,
+        institutionType,
+        contactPerson,
         position,
-        company,
+        email,
         photo,
         rating: parseInt(rating),
         testimonial,
-        projectType,
-        projectDuration,
-        projectImprovement,
-        projectFeatures
+        productsUsed: Array.isArray(productsUsed) ? productsUsed.join(',') : productsUsed
       }
     })
 

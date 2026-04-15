@@ -25,6 +25,12 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+html.dark body {
+  background: #030712;
+  color: #e5e7eb;
 }
 
 a {
@@ -98,4 +104,17 @@ a {
 .animate-gradient-shift {
   background-size: 200% 200%;
   animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes logo-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-logo-scroll {
+  animation: logo-scroll 26s linear infinite;
 }

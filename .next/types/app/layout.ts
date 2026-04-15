@@ -1,4 +1,4 @@
-// File: C:\Users\darsh\OneDrive\Desktop\hohai-website\app\layout.tsx
+// File: /home/darshanb/Desktop/hohai-wesite/hohai-website/app/layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

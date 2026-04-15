@@ -1,7 +1,8 @@
 {
-  "name": "hohai-website",
+  "name": "hohai",
   "version": "0.1.0",
   "private": true,
+  "description": "HOHAI - One Stop Solution for All Your Problems. Partner to a School, Parent & Student.",
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",

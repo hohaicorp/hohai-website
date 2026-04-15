@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
+import ThemeToggle from "./ThemeToggle";
 
 export default function ResponsiveNav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,32 +55,33 @@ export default function ResponsiveNav() {
   return (
     <nav
       className={`fixed top-0 left-6 right-6 sm:left-4 sm:right-4 md:left-8 md:right-8 lg:left-12 lg:right-12 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-lg" : "bg-transparent"
+        isScrolled ? "bg-white dark:bg-gray-900 shadow-lg" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-red-600">HOHAI</h1>
+            <h1 className="text-2xl font-bold text-red-600 dark:text-red-400">hohai</h1>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-gray-700 hover:text-red-600 transition-colors">
+            <a href="#home" className="text-gray-700 dark:text-gray-200 hover:text-red-600 transition-colors">
               Home
             </a>
-            <a href="#services" className="text-gray-700 hover:text-red-600 transition-colors">
+            <a href="#services" className="text-gray-700 dark:text-gray-200 hover:text-red-600 transition-colors">
               Services
             </a>
-            <a href="#about" className="text-gray-700 hover:text-red-600 transition-colors">
+            <a href="#about" className="text-gray-700 dark:text-gray-200 hover:text-red-600 transition-colors">
               About
             </a>
-            <a href="#faq" className="text-gray-700 hover:text-red-600 transition-colors">
+            <a href="#faq" className="text-gray-700 dark:text-gray-200 hover:text-red-600 transition-colors">
               FAQ
             </a>
-            <a href="#contact" className="text-gray-700 hover:text-red-600 transition-colors">
+            <a href="#contact" className="text-gray-700 dark:text-gray-200 hover:text-red-600 transition-colors">
               Contact
             </a>
+            <ThemeToggle />
             <Link href="/contact">
               <button className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors">
                 Get Started
@@ -88,10 +90,11 @@ export default function ResponsiveNav() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
             <motion.button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="relative p-2 text-gray-700 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 rounded-lg"
+              className="relative p-2 text-gray-700 dark:text-gray-200 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 rounded-lg"
               whileTap={{ scale: 0.95 }}
               aria-label="Toggle menu"
             >
@@ -119,12 +122,12 @@ export default function ResponsiveNav() {
           animate={{ x: isMenuOpen ? "0%" : "100%" }}
           exit={{ x: "100%" }}
           transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
-          className="md:hidden fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-[60] overflow-hidden"
+          className="md:hidden fixed top-0 right-0 h-full w-80 bg-white dark:bg-gray-900 shadow-2xl z-[60] overflow-hidden"
           ref={drawerRef}
         >
           {/* Menu Header */}
           <div className="flex justify-between items-center p-6 border-b border-gray-200 bg-gradient-to-r from-red-50 to-red-100">
-            <h2 className="text-xl font-bold text-red-600">HOHAI</h2>
+            <h2 className="text-xl font-bold text-red-600 dark:text-red-400">hohai</h2>
             <motion.button
               onClick={() => setIsMenuOpen(false)}
               className="p-2 text-gray-700 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 rounded-lg hover:bg-white transition-colors"

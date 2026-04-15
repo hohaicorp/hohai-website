@@ -5,14 +5,14 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'HOHAI - Tech Solutions & Digital Innovation',
-  description: 'HOHAI provides cutting-edge tech solutions including mobile apps, web applications, and professional websites. Transform your business with our innovative digital solutions.',
-  keywords: 'tech solutions, mobile apps, web development, professional websites, digital innovation, HOHAI',
-  authors: [{ name: 'HOHAI' }],
+  title: 'hohai - Stuck anywhere? Use hohai',
+  description: 'hohai motto: Stuck anywhere? Use hohai. One-stop solution for all your problems and partner to a school, parent, and student.',
+  keywords: 'school management, college management, coaching institute, student ERP, attendance system, payment gateway, online courses, career counselling, hohai',
+  authors: [{ name: 'hohai' }],
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'HOHAI'
+    title: 'hohai'
   },
   formatDetection: {
     telephone: false,
@@ -24,7 +24,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: '#dc2626',
+  themeColor: '#4f46e5',
 }
 
 export default function RootLayout({
@@ -33,8 +33,24 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var storedTheme = localStorage.getItem('theme');
+                  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  var shouldUseDark = storedTheme ? storedTheme === 'dark' : prefersDark;
+                  document.documentElement.classList.toggle('dark', shouldUseDark);
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+        {children}
+      </body>
     </html>
   )
 } 
