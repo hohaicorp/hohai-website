@@ -67,9 +67,9 @@ export async function GET(request: NextRequest) {
       },
       select: {
         id: true,
+        name: true,
         contactPerson: true,
         position: true,
-        institutionName: true,
         rating: true,
         testimonial: true,
         institutionType: true,
