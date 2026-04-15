@@ -145,6 +145,8 @@ export async function sendContactFormEmails(contactData: {
   name: string
   email: string
   message: string
+  phone: string
+  institute: string
 }) {
   try {
     // Send notification to admin
