@@ -60,7 +60,8 @@ export async function POST(request: NextRequest) {
     }
 
     const { 
-      institutionName,
+      name,
+      company,
       institutionType,
       contactPerson,
       position,
@@ -71,7 +72,7 @@ export async function POST(request: NextRequest) {
       photo = ''
     } = await request.json()
 
-    if (!institutionName || !contactPerson || !position || !email || !rating || !testimonial) {
+    if (!name || !company || !contactPerson || !position || !email || !rating || !testimonial) {
       return NextResponse.json(
         { error: 'Required fields missing' },
         { status: 400 }
@@ -80,7 +81,8 @@ export async function POST(request: NextRequest) {
 
     const newTestimonial = await prisma.testimonial.create({
       data: {
-        institutionName,
+        name,
+        company,
         institutionType,
         contactPerson,
         position,

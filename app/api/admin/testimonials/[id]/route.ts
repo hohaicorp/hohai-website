@@ -73,7 +73,8 @@ export async function PUT(
     }
 
     const { 
-      institutionName,
+      name,
+      company,
       institutionType,
       contactPerson,
       position,
@@ -84,7 +85,7 @@ export async function PUT(
       photo = ''
     } = await request.json()
 
-    if (!institutionName || !contactPerson || !position || !rating || !testimonial) {
+    if (!name || !company || !contactPerson || !position || !rating || !testimonial) {
       return NextResponse.json(
         { error: 'Required fields missing' },
         { status: 400 }
@@ -96,7 +97,8 @@ export async function PUT(
         id: parseInt(params.id)
       },
       data: {
-        institutionName,
+        name,
+        company,
         institutionType,
         contactPerson,
         position,
