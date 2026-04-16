@@ -157,7 +157,7 @@ export default function ProductsPage() {
                   
                   <div className="flex justify-between items-center">
                     <span className="text-lg font-bold text-indigo-600">{product.pricing}</span>
-                    <Link href="/contact">
+                    <Link href="#contact">
                       <button className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors flex items-center">
                         Get Demo
                         <ArrowRight className="w-4 h-4 ml-2" />

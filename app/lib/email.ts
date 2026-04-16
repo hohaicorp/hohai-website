@@ -1,11 +1,20 @@
 import nodemailer from 'nodemailer'
 
+const EMAIL_USER = process.env.EMAIL_USER
+const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD || process.env.EMAIL_PASS
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || EMAIL_USER
+const EMAIL_FROM = process.env.EMAIL_FROM || EMAIL_USER
+
+if (!EMAIL_USER || !EMAIL_PASSWORD) {
+  console.error('Email transport configuration is missing. Set EMAIL_USER and EMAIL_PASSWORD in your environment.')
+}
+
 // Email configuration
 const transporter = nodemailer.createTransport({
   service: 'gmail', // You can change this to other services like 'outlook', 'yahoo', etc.
   auth: {
-    user: process.env.EMAIL_USER, // Your email address
-    pass: process.env.EMAIL_PASS  // Your email password or app password
+    user: EMAIL_USER,
+    pass: EMAIL_PASSWORD
   }
 })
 

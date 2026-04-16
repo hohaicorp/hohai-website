@@ -2,8 +2,11 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
 import ThemeToggle from './components/ThemeToggle'
+import ChatBot from './components/ChatBot'
+import { sendContactFormEmail } from '@/app/lib/emailjs'
 import { 
   GraduationCap, 
   BarChart3,
@@ -255,17 +258,24 @@ export default function Home() {
     setFormLoading(true)
     
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(contactForm)
-      })
+      const response = await sendContactFormEmail(contactForm)
       
-      if (response.ok) {
-        setFormStatus({ type: 'success', message: 'Request sent! We\'ll contact you soon.' })
-        setContactForm({ name: '', email: '', phone: '', institute: '', message: '' })
+      if (response.success) {
+        const adminOk = response.admin?.status === 200
+        const customerOk = response.customer?.status === 200
+        const adminText = adminOk ? 'Admin notified' : 'Admin notification failed'
+        const customerText = customerOk ? 'Confirmation email sent' : 'Reply email failed'
+
+        setFormStatus({
+          type: customerOk && adminOk ? 'success' : 'error',
+          message: `${adminText}. ${customerText}.`
+        })
+
+        if (adminOk && customerOk) {
+          setContactForm({ name: '', email: '', phone: '', institute: '', message: '' })
+        }
       } else {
-        setFormStatus({ type: 'error', message: 'Failed to send request. Try again.' })
+        setFormStatus({ type: 'error', message: response.error || 'Failed to send request. Try again.' })
       }
     } catch (error) {
       setFormStatus({ type: 'error', message: 'Something went wrong. Please try again.' })
@@ -296,7 +306,7 @@ export default function Home() {
               <a href="#features" className="text-gray-700 dark:text-gray-200 hover:text-indigo-600 transition-colors">Features</a>
               <a href="#contact" className="text-gray-700 dark:text-gray-200 hover:text-indigo-600 transition-colors">Contact</a>
               <ThemeToggle />
-              <Link href="/contact">
+              <Link href="#contact">
                 <button className="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
                   Get Demo
                 </button>
@@ -327,7 +337,7 @@ export default function Home() {
                 <a href="#courses" className="text-gray-700 dark:text-gray-200 hover:text-indigo-600" onClick={() => setIsMenuOpen(false)}>Courses</a>
                 <a href="#features" className="text-gray-700 dark:text-gray-200 hover:text-indigo-600" onClick={() => setIsMenuOpen(false)}>Features</a>
                 <a href="#contact" className="text-gray-700 dark:text-gray-200 hover:text-indigo-600" onClick={() => setIsMenuOpen(false)}>Contact</a>
-                <Link href="/contact">
+                <Link href="#contact">
                   <button className="w-full bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700">
                     Get Demo
                   </button>
@@ -345,36 +355,52 @@ export default function Home() {
           <div className="absolute bottom-20 left-10 w-96 h-96 bg-purple-200 rounded-full opacity-20 blur-3xl"></div>
         </motion.div>
 
-        <div className="max-w-7xl mx-auto text-center relative z-10">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-gray-100 mb-6">
-              One-stop solution for
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600"> Schools, Colleges and Coaching centers</span>
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
-              Stuck anywhere? Use hohai. We are your one-stop solution for all your problems and a trusted partner to a school, parent, and student.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="#contact">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid gap-12 xl:grid-cols-[1.2fr_0.8fr] items-center">
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center xl:text-left">
+              <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                One-stop solution for
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600"> Schools, Colleges and Coaching centers</span>
+              </h1>
+              <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto xl:mx-0">
+                Stuck anywhere? Use hohai. We are your one-stop solution for all your problems and a trusted partner to a school, parent, and student.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center xl:justify-start">
+                <Link href="#contact">
+                  <motion.button 
+                    className="bg-indigo-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition-colors flex items-center justify-center"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Schedule Demo
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </motion.button>
+                </Link>
                 <motion.button 
-                  className="bg-indigo-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition-colors flex items-center justify-center"
+                  className="border-2 border-indigo-600 text-indigo-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-indigo-600 hover:text-white transition-colors"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Schedule Demo
-                  <ArrowRight className="ml-2 w-5 h-5" />
+                  Explore Features
                 </motion.button>
-              </Link>
-              <motion.button 
-                className="border-2 border-indigo-600 text-indigo-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-indigo-600 hover:text-white transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Explore Features
-              </motion.button>
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
 
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative overflow-hidden rounded-[2rem] border border-gray-200 dark:border-gray-800 shadow-2xl shadow-indigo-200/20">
+              <Image
+                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80"
+                alt="School classroom collaboration"
+                width={1200}
+                height={900}
+                className="w-full h-[420px] object-cover"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-6 text-white">
+                <p className="text-sm uppercase tracking-[0.2em] text-indigo-200">Real classroom impact</p>
+                <p className="mt-2 text-xl font-semibold">Designed for educators, students, and parents who need real tools.</p>
+              </div>
+            </motion.div>
+          </div>
+          
           {/* Stats */}
           <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
             {stats.map((stat, idx) => (
@@ -459,6 +485,65 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section className="py-20 px-4 bg-white dark:bg-gray-950">
+        <div className="max-w-7xl mx-auto">
+          <motion.div className="text-center mb-12" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <p className="inline-flex px-4 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 text-sm font-semibold mb-4">
+              Real education, real outcomes
+            </p>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">See the impact in real classrooms</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">
+              We use real visuals from learning environments that match our motto: trusted, practical, and built for education.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="overflow-hidden rounded-3xl border border-gray-200 dark:border-gray-800 shadow-lg">
+              <Image
+                src="https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?auto=format&fit=crop&w=1200&q=80"
+                alt="Teacher helping students in classroom"
+                width={1200}
+                height={900}
+                className="w-full h-72 object-cover"
+              />
+              <div className="p-6 bg-white dark:bg-gray-950">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Teacher-led support</h3>
+                <p className="text-gray-600 dark:text-gray-300">Professional guidance, modern classrooms and institutions using our platform to support every student.</p>
+              </div>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} viewport={{ once: true }} className="overflow-hidden rounded-3xl border border-gray-200 dark:border-gray-800 shadow-lg">
+              <Image
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+                alt="Students collaborating on project work"
+                width={1200}
+                height={900}
+                className="w-full h-72 object-cover"
+              />
+              <div className="p-6 bg-white dark:bg-gray-950">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Student collaboration</h3>
+                <p className="text-gray-600 dark:text-gray-300">Real student study groups, digital learning, and coaching that feels modern and practical.</p>
+              </div>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} viewport={{ once: true }} className="overflow-hidden rounded-3xl border border-gray-200 dark:border-gray-800 shadow-lg">
+              <Image
+                src="https://images.unsplash.com/photo-1485217988980-11786ced9454?auto=format&fit=crop&w=1200&q=80"
+                alt="School administrator and parent discussion"
+                width={1200}
+                height={900}
+                className="w-full h-72 object-cover"
+              />
+              <div className="p-6 bg-white dark:bg-gray-950">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Parent and institution trust</h3>
+                <p className="text-gray-600 dark:text-gray-300">Real conversations and trusted partnerships between schools, parents, and students.</p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Institution Growth Services */}
       <section className="py-24 px-4 bg-white dark:bg-gray-950 overflow-hidden">
         <div className="max-w-7xl mx-auto">
@@ -743,6 +828,7 @@ export default function Home() {
         </div>
       </section>
 
+      <ChatBot />
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12 px-4">
         <div className="max-w-7xl mx-auto text-center">

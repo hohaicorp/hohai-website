@@ -5,6 +5,9 @@ import jwt from 'jsonwebtoken'
 const prisma = new PrismaClient()
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key'
 
+// This route depends on request headers (JWT auth), so it must be dynamic.
+export const dynamic = 'force-dynamic'
+
 // Middleware to verify JWT token
 function verifyToken(request: NextRequest) {
   const authHeader = request.headers.get('authorization')

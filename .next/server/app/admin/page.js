@@ -14,4 +14,4 @@ Testimonial: ${e.testimonial}`)},N=e=>{alert("Edit functionality coming soon!")}
                   document.documentElement.classList.toggle('dark', shouldUseDark);
                 } catch (e) {}
               })();
-            `}}),e]})})}},67272:()=>{}};var s=require("../../webpack-runtime.js");s.C(e);var t=e=>s(s.s=e),a=s.X(0,[276,82,504],()=>t(25481));module.exports=a})();
+            `}}),e]})})}},67272:()=>{}};var s=require("../../webpack-runtime.js");s.C(e);var t=e=>s(s.s=e),a=s.X(0,[9276,82,2504],()=>t(25481));module.exports=a})();

@@ -264,3 +264,14 @@ model CallRequest {
   scheduledTime DateTime?
   createdAt DateTime @default(now())
 }
+
+// AI Chat (Gemini) messages
+model ChatMessage {
+  id        Int      @id @default(autoincrement())
+  sessionId String
+  role      String   // "user" | "assistant"
+  content   String
+  createdAt DateTime @default(now())
+
+  @@index([sessionId, createdAt])
+}

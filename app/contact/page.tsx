@@ -17,8 +17,9 @@
     Globe
   } from 'lucide-react'
   import Link from 'next/link'
-  import { api } from '../lib/api'
-  import ResponsiveNav from "../components/ResponsiveNav";
+import ResponsiveNav from '@/app/components/ResponsiveNav'
+import ChatBot from '../components/ChatBot'
+import { sendContactFormEmail } from '@/app/lib/emailjs'
   import { useRouter } from 'next/navigation';
 
   export default function ContactPage() {
@@ -53,37 +54,42 @@
       setStatus({ type: null, message: '' })
 
       try {
-        const response = await api.submitContact({
+        const response = await sendContactFormEmail({
           name: formData.name,
           email: formData.email,
-          message: `Project Inquiry:
-          
-  Name: ${formData.name}
-  Email: ${formData.email}
-  Phone: ${formData.phone}
-  Company: ${formData.company}
-  Project Type: ${formData.projectType}
-  Budget: ${formData.budget}
-  Timeline: ${formData.timeline}
-
-  Project Description:
-  ${formData.description}`
+          phone: formData.phone,
+          company: formData.company,
+          projectType: formData.projectType,
+          budget: formData.budget,
+          timeline: formData.timeline,
+          message: `Project Inquiry:\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCompany: ${formData.company}\nProject Type: ${formData.projectType}\nBudget: ${formData.budget}\nTimeline: ${formData.timeline}\n\nProject Description:\n${formData.description}`
         })
 
-        if (response.error) {
-          setStatus({ type: 'error', message: response.error })
-        } else {
-          setStatus({ type: 'success', message: 'Thank you! We\'ll get back to you within 24 hours with a detailed quote.' })
-          setFormData({
-            name: '',
-            email: '',
-            phone: '',
-            company: '',
-            projectType: '',
-            budget: '',
-            timeline: '',
-            description: ''
+        if (response.success) {
+          const adminOk = response.admin?.status === 200
+          const customerOk = response.customer?.status === 200
+          const adminText = adminOk ? 'Your request was delivered to us successfully.' : 'There was an issue delivering your request to us.'
+          const customerText = customerOk ? 'A confirmation email was sent to your inbox.' : 'We could not send the confirmation email to you.'
+
+          setStatus({
+            type: customerOk && adminOk ? 'success' : 'error',
+            message: `${adminText} ${customerText}`
           })
+
+          if (adminOk && customerOk) {
+            setFormData({
+              name: '',
+              email: '',
+              phone: '',
+              company: '',
+              projectType: '',
+              budget: '',
+              timeline: '',
+              description: ''
+            })
+          }
+        } else {
+          setStatus({ type: 'error', message: response.error || 'Failed to send message. Please try again.' })
         }
       } catch (error) {
         setStatus({ type: 'error', message: 'Failed to send message. Please try again.' })
@@ -175,7 +181,8 @@
     ]
 
     return (
-      <div className="min-h-screen bg-white">
+      <>
+        <div className="min-h-screen bg-white">
         <ResponsiveNav />
         
         {/* Gamusa Side Strips - Left */}
@@ -517,7 +524,7 @@
                     Schedule a Call
                   </button>
                   <Link href="/meet-our-team" legacyBehavior>
-                    <a className="w-full block border-2 border-red-600 text-red-600 py-3 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-colors flex items-center justify-center">
+                    <a className="w-full border-2 border-red-600 text-red-600 py-3 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-colors flex items-center justify-center">
                       <Users className="w-5 h-5 mr-2" />
                       Meet Our Team
                     </a>
@@ -607,6 +614,8 @@
             </div>
           </div>
         )}
-      </div>
+        </div>
+        <ChatBot />
+      </>
     )
   } 
